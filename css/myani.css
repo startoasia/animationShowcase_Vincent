@@ -1,0 +1,395 @@
+/* ===== 按鈕閃光 (.light) ===== */
+.light {
+  --light-color: rgba(255, 255, 255, 0.7); /* 預設為白色閃光 */
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+.light:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, var(--light-color) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--light-color) 100%);
+  animation: light-transform 3s infinite ease-in-out;
+}
+.goldenlight {
+  /* 使用 .goldenlight 來覆寫閃光顏色 */
+  --light-color: rgba(255, 215, 0, 0.7);
+}
+@keyframes light-transform {
+  0% {
+    /* 結合 skewX 和 translateX */
+    transform: skewX(-25deg) translateX(-300%);
+  }
+  70% {
+    transform: skewX(-25deg) translateX(300%);
+  }
+  100% {
+    transform: skewX(-25deg) translateX(300%);
+  }
+}
+
+/* ===== 果凍跳動 (.ani-bounce) ===== */
+.ani-bounce {
+  animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+  }
+  10% {
+    transform: scale(1.05, 0.95) translate3d(0, 0, 0);
+  }
+  30% {
+    transform: scale(0.95, 1.05) translate3d(0, -8%, 0);
+  }
+  50% {
+    transform: scale(1.02, 0.97) translate3d(0, 0, 0);
+  }
+  57% {
+    transform: scale(1, 1) translate3d(0, -2%, 0);
+  }
+  64% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+  }
+}
+
+/* ===== 縮放 (.ani-scale) ===== */
+.ani-scale {
+  animation: scale 1s infinite ease-in-out;
+}
+@keyframes scale {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+/* ===== 小縮放 (.ani-scale) ===== */
+
+.ani-miniscale {
+  animation: miniscale 1s infinite ease-in-out;
+}
+@keyframes miniscale {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.05, 1.05);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* ===== 水平漂浮 (.ani-float-horizontal) ===== */
+.ani-float-horizontal {
+  animation: float-horizontal 1.5s ease-in-out infinite;
+}
+@keyframes float-horizontal {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+/* ===== 垂直漂浮 (.ani-float-vertical) ===== */
+.ani-float-vertical {
+  animation: float-vertical 1.5s ease-in-out infinite;
+}
+@keyframes float-vertical {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== 閃爍 (.ani-twinkle) ===== */
+.ani-twinkle {
+  animation: twinkle 2s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* 頻閃  (Strobe Effect) */
+.ani-strobe {
+  animation: strobe 1s infinite;
+}
+
+@keyframes strobe {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* 頻閃 */
+
+/* ===== 蹺蹺板 (.ani-seesaw) ===== */
+.ani-seesaw {
+  animation: seesaw 3s infinite ease-in-out;
+  transform-origin: center center;
+}
+@keyframes seesaw {
+  0% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+/* ===== 旋轉 (.ani-rotate) ===== */
+.ani-rotate {
+  animation: rotate 2s infinite linear;
+  transform-origin: center center;
+}
+.ani-rotate-corner {
+  animation: rotate 2s infinite linear;
+  transform-origin: top left;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== 鐘擺搖晃 (.ani-swing) ===== */
+.ani-swing {
+  animation: swing 2s ease-in-out infinite;
+  transform-origin: top center;
+}
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+  50% {
+    transform: rotate3d(0, 0, 1, -15deg);
+  }
+}
+
+/* ===== 水平翻轉 (.ani-flip) ===== */
+.ani-flip {
+  animation: flip 3s infinite linear;
+}
+@keyframes flip {
+  from {
+    transform: perspective(400px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+/* ===== 垂直翻轉 (.ani-flip-vertical) ===== */
+.ani-flip-vertical {
+  animation: flip-vertical 3s infinite linear;
+}
+@keyframes flip-vertical {
+  from {
+    transform: perspective(400px) rotateX(0deg);
+  }
+  to {
+    transform: perspective(400px) rotateX(360deg);
+  }
+}
+
+/* ===== 向下淡入 (.ani-fade-in-down) ===== */
+.ani-fade-in-down {
+  animation: fade-in-down 2s infinite alternate ease-in-out;
+}
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 放大 (.ani-zoom-in) ===== */
+.ani-zoom-in {
+  animation: zoom-in 2s infinite alternate ease-in-out;
+}
+@keyframes zoom-in {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ===== 開合 (.ani-cover-open) ===== */
+.ani-cover-open {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.ani-cover-open::before,
+.ani-cover-open::after {
+  content: "門";
+  position: absolute;
+  top: 0;
+  width: 50.5%; /* 稍微重疊以避免中間出現縫隙 */
+  height: 100%;
+  background: #b61212; /* 設定一個固定的門板顏色 */
+  z-index: 1;
+  border-radius: inherit; /* 繼承父元素的圓角 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* demo用可刪S */
+.ani-cover-open::before {
+  left: 0;
+  transform-origin: left center;
+  animation: cover-open-left 2s infinite alternate ease-in-out;
+}
+.ani-cover-open::after {
+  right: 0;
+  transform-origin: right center;
+  animation: cover-open-right 2s infinite alternate ease-in-out;
+}
+/* demo用可刪E */
+@keyframes cover-open-left {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-140deg);
+  }
+}
+
+@keyframes cover-open-right {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(140deg);
+  }
+}
+
+/* ===== 公轉 (.ani-revolve) ===== */
+.ani-revolve {
+  animation: revolve 6s infinite linear;
+}
+.ani-revolve-2 {
+  animation: revolve 6s infinite linear;
+  animation-delay: 2s;
+}
+.ani-revolve-3 {
+  animation: revolve 6s infinite linear;
+  animation-delay: 4s;
+}
+@keyframes revolve {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+/* ===== 前後對比圖 (.BeAf_container) ===== */
+.BeAf_container {
+  position: relative;
+  width: 100%;
+  height: 258px;
+  overflow: hidden;
+}
+
+.BeAf_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.BeAf_top {
+  animation: revealClip 3s infinite alternate ease-in-out;
+  clip-path: polygon(var(--pos, 50%) 0%, 100% 0%, 100% 100%, var(--pos, 50%) 100%);
+}
+
+.BeAf_line {
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), white, rgba(255, 255, 255, 0.8));
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.2);
+  filter: blur(0.5px);
+  animation: moveLine 3s infinite alternate ease-in-out;
+  z-index: 10;
+  pointer-events: none;
+}
+.BeAf_line_B {
+  animation-delay: 0.7s;
+}
+.BeAf_line_C {
+  animation-delay: 1s;
+}
+@keyframes revealClip {
+  0% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  }
+}
+@keyframes moveLine {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}

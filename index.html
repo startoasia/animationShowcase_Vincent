@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 動畫效果 Demo</title>
+    <link rel="stylesheet" href="css/all.css" />
+    <!-- AOS -->
+    <link
+      rel="preload"
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link rel="stylesheet" href="css/myani.css" />
+    <style>
+      body {
+        background-color: #f0f0f0;
+        padding-bottom: 100px;
+      }
+
+      .demo-container {
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #333;
+      }
+
+      .demo-section {
+        margin-bottom: 50px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-top: 0;
+        color: #555;
+      }
+
+      .demo-box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        min-height: 150px;
+      }
+      .demo-box-container-large {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .demo-box {
+        width: 100px;
+        height: 100px;
+        background-color: #ff6a80;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      .demo-box-gray{
+         background-color: #a1a1a1;
+      }
+
+      .light-button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .light-button-white {
+        background-color: #fff;
+        color: #000;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="demo-container">
+        <h1>常用 CSS 動畫效果 Demo</h1>
+
+        <!-- 按鈕閃光 -->
+        <div class="demo-section">
+          <h2>掃光 (.light)</h2>
+          <div class="demo-box-container">
+            <a href="#" class="light light-button">掃光</a>
+          </div>
+          <div class="demo-box-container demo-box-gray">
+            <a href="#" class="light goldenlight light-button-white">掃金光(白底或淺色底用)</a>
+          </div>
+        </div>
+
+        <!-- 彈跳 -->
+        <div class="demo-section">
+          <h2>彈跳 (.ani-bounce)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-bounce">彈跳</div>
+          </div>
+        </div>
+
+        <!-- 縮放 -->
+        <div class="demo-section">
+          <h2>縮放 (.ani-scale)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-scale">縮放</div>
+            <div class="demo-box ani-miniscale" style="background-color: #396a92">小縮放</div>
+          </div>
+        </div>
+
+        <!-- 水平漂浮 -->
+        <div class="demo-section">
+          <h2>水平漂浮 (.ani-float-horizontal)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-float-horizontal" style="background-color: #9c27b0">水平漂浮</div>
+            <div class="demo-box ani-float-vertical" style="background-color: #2196f3">垂直漂浮</div>
+          </div>
+        </div>
+
+        <!-- 閃爍 -->
+        <div class="demo-section">
+          <h2>閃爍 (.ani-twinkle)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-twinkle" style="background-color: #607d8b">閃爍</div>
+            <div class="demo-box ani-strobe" style="background-color: #ad0c0c">頻閃</div>
+          </div>
+        </div>
+
+        <!-- 蹺蹺板 -->
+        <div class="demo-section">
+          <h2>蹺蹺板 (.ani-seesaw)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-seesaw" style="background-color: #795548">蹺蹺板</div>
+          </div>
+        </div>
+
+        <!-- 旋轉 -->
+        <div class="demo-section">
+          <h2>旋轉 (.ani-rotate)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-rotate" style="background-color: #9c0c0c">旋轉(中心)</div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <!-- 公轉 -->
+          <div class="demo-section">
+            <h2>公轉 (.ani-revolve)</h2>
+            <div class="demo-box-container-large relative">
+              <div class="absolute demo-box ani-revolve ball" style="background-color: #ff0000">公轉</div>
+              <div class="absolute demo-box ani-revolve-2 ball" style="background-color: #33ff00">公轉</div>
+              <div class="absolute demo-box ani-revolve-3 ball" style="background-color: #0011ff">公轉</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 鐘擺 -->
+        <div class="demo-section">
+          <h2>鐘擺 (.ani-swing)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-swing" style="background-color: #009688">鐘擺</div>
+          </div>
+        </div>
+
+        <!-- 翻轉 -->
+        <div class="demo-section">
+          <h2>翻轉 (.ani-flip, .ani-flip-vertical)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-flip" style="background-color: #a1887f">水平翻轉</div>
+            <div class="demo-box ani-flip-vertical" style="background-color: #8d6e63">垂直翻轉</div>
+          </div>
+        </div>
+        <!-- 開合 -->
+        <div class="demo-section">
+          <h2>開箱 (.ani-cover-open)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-cover-open" style="background-color: #78909c">開箱</div>
+          </div>
+        </div>
+
+        <!-- 前後對比圖 -->
+        <div class="demo-section">
+          <h2>前後對比圖 (.BeAf_container)</h2>
+          <p style="text-align: center; color: #666">這是一個純 CSS 實現的圖片左右滑動對比效果。</p>
+          <div class="relative" style="max-width: 500px; margin: 0 auto">
+            <div class="BeAf_container" style="height: 300px">
+              <div class="BeAf_image" style="background-color: #ccc"></div>
+              <div class="BeAf_image BeAf_top" style="background-color: #ff6a80"></div>
+              <div class="BeAf_line"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== 滑動觸發效果 ========== -->
+        <h1 style="margin-top: 80px; color: #007bff">滑動觸發效果</h1>
+        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">
+          （以下效果設定為滑動到可視範圍時才觸發）
+        </p>
+        <div class="demo-section">
+          <h2>向(方向)淡入</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="fade-down" data-aos-delay="150" style="background-color: #ba68c8">
+              向下淡入
+            </div>
+            <div class="demo-box" data-aos="fade-left" data-aos-delay="150" style="background-color: #ba68c8">
+              向左淡入
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-section">
+          <h2>浮現</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="zoom-in" data-aos-delay="150" style="background-color: #ff7043">浮現</div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <h2>向(方向)浮現</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="zoom-in-up" data-aos-delay="150" style="background-color: #41682b">
+              向上浮現
+            </div>
+            <div class="demo-box" data-aos="zoom-in-left" data-aos-delay="150" style="background-color: #3a9485">
+              向左浮現
+            </div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <h2>向(方向)置入</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="zoom-out-up" data-aos-delay="150" style="background-color: #682b63">
+              向上置入
+            </div>
+            <div class="demo-box" data-aos="zoom-out-left" data-aos-delay="150" style="background-color: #530e36">
+              向左置入
+            </div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <h2>翻入</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="flip-up" data-aos-delay="150" style="background-color: #7f66a8">
+              向上翻入
+            </div>
+            <div class="demo-box" data-aos="flip-left" data-aos-delay="150" style="background-color: #a567b4">
+              向左翻入
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // AOS
+      AOS.init({
+        // Settings that can be overridden on per-element basis, by `aos-*` attributes:
+        offset: 120, // offset (in px) from the original trigger point
+        delay: 0, // values from 0 to 3000, with step 50ms
+        duration: 400, // values from 0 to 3000, with step 50ms
+        easing: "ease", // default easing for AOS animations
+        once: false, // whether animation should happen only once - while scrolling down
+        mirror: false, // whether elements should animate out while scrolling past them
+        anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+      });
+    </script>
+  </body>
+</html>
