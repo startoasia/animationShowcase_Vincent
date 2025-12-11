@@ -73,8 +73,8 @@
         font-weight: bold;
         font-size: 1rem;
       }
-      .demo-box-gray{
-         background-color: #a1a1a1;
+      .demo-box-gray {
+        background-color: #a1a1a1;
       }
 
       .light-button {
@@ -93,12 +93,33 @@
         font-weight: bold;
         text-decoration: none;
       }
+      .cssliblists{
+        margin: 0 auto;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
     </style>
   </head>
   <body>
     <div class="wrap">
       <div class="demo-container">
         <h1>常用 CSS 動畫效果 Demo</h1>
+
+        <!-- 外接動畫庫 -->
+        <div class="demo-section">
+          <h2>外部動畫效果庫</h2>
+          <p style="text-align: center; color: #666">
+            如果在下面的常用動畫中找不到心儀的效果，或者是想要更複雜華麗的動畫，<Br>可以去以下CSS動畫庫的網站瀏覽他們的Demo並指定想要的效果。</p>
+          <p class="cssliblists">
+            <a href="https://animate.style/" style="text-align: center; color: #5b2d91"> animate.css </a>
+            <a href="https://animista.net/play/basic" style="text-align: center; color: #5b2d91"> animista.net </a>
+            <a href="https://minimamente.com/project/magic/" style="text-align: center; color: #5b2d91"> minimamente </a>
+            
+          </p>
+        </div>
 
         <!-- 按鈕閃光 -->
         <div class="demo-section">
@@ -128,6 +149,14 @@
           </div>
         </div>
 
+        <!-- 心跳 -->
+        <div class="demo-section">
+          <h2>心跳(.ani-heartBeat)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-heartBeat" style="background-color: #da3333">心跳</div>
+          </div>
+        </div>
+
         <!-- 水平漂浮 -->
         <div class="demo-section">
           <h2>水平漂浮 (.ani-float-horizontal)</h2>
@@ -137,12 +166,21 @@
           </div>
         </div>
 
+        <!-- 震動 -->
+        <div class="demo-section">
+          <h2>震動 (.ani-vibrate )</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-vibrate" style="background-color: #45aa94">震動</div>
+          </div>
+        </div>
+
         <!-- 閃爍 -->
         <div class="demo-section">
           <h2>閃爍 (.ani-twinkle)</h2>
           <div class="demo-box-container">
-            <div class="demo-box ani-twinkle" style="background-color: #607d8b">閃爍</div>
+            <div class="demo-box ani-twinkle" style="background-color: #607d8b">星星</div>
             <div class="demo-box ani-strobe" style="background-color: #ad0c0c">頻閃</div>
+            <div class="demo-box ani-warning-light" style="background-color: #ff9800">警示燈</div>
           </div>
         </div>
 
@@ -151,6 +189,14 @@
           <h2>蹺蹺板 (.ani-seesaw)</h2>
           <div class="demo-box-container">
             <div class="demo-box ani-seesaw" style="background-color: #795548">蹺蹺板</div>
+          </div>
+        </div>
+
+        <!-- 鐘擺 -->
+        <div class="demo-section">
+          <h2>鐘擺 (.ani-swing)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box ani-swing" style="background-color: #009688">鐘擺</div>
           </div>
         </div>
 
@@ -193,7 +239,8 @@
         <div class="demo-section">
           <h2>開箱 (.ani-cover-open)</h2>
           <div class="demo-box-container">
-            <div class="demo-box ani-cover-open" style="background-color: #78909c">開箱</div>
+            <div class="demo-box ani-cover-open" style="background-color: #78909c">雙開</div>
+            <div class="demo-box ani-cover-open-single" style="background-color: #546e7a; margin-left: 120px">單開</div>
           </div>
         </div>
 
@@ -209,6 +256,15 @@
             </div>
           </div>
         </div>
+        <!-- 揭示 -->
+        <div class="demo-section">
+          <h2>生長 (.ani-grow-up)</h2>
+          <p style="text-align: center; color: #666">方向/速度可客製</p>
+          <div class="demo-box-container">
+            <div class="demo-box ani-grow-up" style="background-color: #2d3c64">向上生長</div>
+            <div class="demo-box ani-grow-right" style="background-color: #2d6434">向右生長</div>
+          </div>
+        </div>
 
         <!-- ========== 滑動觸發效果 ========== -->
         <h1 style="margin-top: 80px; color: #007bff">滑動觸發效果</h1>
@@ -216,25 +272,43 @@
           （以下效果設定為滑動到可視範圍時才觸發）
         </p>
         <div class="demo-section">
-          <h2>向(方向)淡入</h2>
+          <h2>淡入(Fade In)</h2>
           <div class="demo-box-container">
-            <div class="demo-box" data-aos="fade-down" data-aos-delay="150" style="background-color: #ba68c8">
+            <div class="demo-box" data-aos="fade-in" data-aos-delay="150" style="background-color: #438eff">淡入</div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <h2>向(八方向)淡入</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="fade-up-right" data-aos-delay="150" style="background-color: #929292">
+              向右上淡入
+            </div>
+            <div class="demo-box" data-aos="fade-right" data-aos-delay="150" style="background-color: #940000">
+              向右淡入
+            </div>
+            <div class="demo-box" data-aos="fade-up" data-aos-delay="150" style="background-color: #a85a00">
+              向上淡入
+            </div>
+            <div class="demo-box" data-aos="fade-down" data-aos-delay="150" style="background-color: #bba800">
               向下淡入
             </div>
-            <div class="demo-box" data-aos="fade-left" data-aos-delay="150" style="background-color: #ba68c8">
+            <div class="demo-box" data-aos="fade-left" data-aos-delay="150" style="background-color: #00b309">
               向左淡入
+            </div>
+            <div class="demo-box" data-aos="fade-down-left" data-aos-delay="150" style="background-color: #7c9fff">
+              向左下淡入
             </div>
           </div>
         </div>
 
         <div class="demo-section">
-          <h2>浮現</h2>
+          <h2>浮現 (Zoom In - 由小而大)</h2>
           <div class="demo-box-container">
             <div class="demo-box" data-aos="zoom-in" data-aos-delay="150" style="background-color: #ff7043">浮現</div>
           </div>
         </div>
         <div class="demo-section">
-          <h2>向(方向)浮現</h2>
+          <h2>向(四方向)浮現</h2>
           <div class="demo-box-container">
             <div class="demo-box" data-aos="zoom-in-up" data-aos-delay="150" style="background-color: #41682b">
               向上浮現
@@ -245,7 +319,13 @@
           </div>
         </div>
         <div class="demo-section">
-          <h2>向(方向)置入</h2>
+          <h2>置入 (Zoom Out - 由大而小)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box" data-aos="zoom-out" data-aos-delay="150" style="background-color: #be6ab7">置入</div>
+          </div>
+        </div>
+        <div class="demo-section">
+          <h2>向(八方向)置入</h2>
           <div class="demo-box-container">
             <div class="demo-box" data-aos="zoom-out-up" data-aos-delay="150" style="background-color: #682b63">
               向上置入

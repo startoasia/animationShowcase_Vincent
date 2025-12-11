@@ -98,6 +98,31 @@
   }
 }
 
+/* ===== 心跳(.ani-heartBeat) ===== */
+
+.ani-heartBeat {
+  animation: heartBeat 1s infinite ease-in-out;
+}
+@keyframes heartBeat {
+  0%,
+  10% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 1.25);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  70% {
+    transform: scale(1.25, 1.25);
+  }
+  90%,
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
 /* ===== 水平漂浮 (.ani-float-horizontal) ===== */
 .ani-float-horizontal {
   animation: float-horizontal 1.5s ease-in-out infinite;
@@ -152,7 +177,16 @@
   0% {
     opacity: 1;
   }
-  50% {
+  20% {
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
     opacity: 0.1;
   }
   100% {
@@ -160,6 +194,22 @@
   }
 }
 /* 頻閃 */
+
+/* ===== 警示燈 (.ani-warning-light) ===== */
+.ani-warning-light {
+  animation: warning-light 0.4s infinite;
+}
+
+@keyframes warning-light {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.3;
+  }
+}
 
 /* ===== 蹺蹺板 (.ani-seesaw) ===== */
 .ani-seesaw {
@@ -274,19 +324,15 @@
 
 .ani-cover-open::before,
 .ani-cover-open::after {
-  content: "門";
+  content: "";
   position: absolute;
   top: 0;
   width: 50.5%; /* 稍微重疊以避免中間出現縫隙 */
   height: 100%;
-  background: #b61212; /* 設定一個固定的門板顏色 */
+  background: var(--cover-color, #b61212);
   z-index: 1;
   border-radius: inherit; /* 繼承父元素的圓角 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-/* demo用可刪S */
 .ani-cover-open::before {
   left: 0;
   transform-origin: left center;
@@ -297,7 +343,6 @@
   transform-origin: right center;
   animation: cover-open-right 2s infinite alternate ease-in-out;
 }
-/* demo用可刪E */
 @keyframes cover-open-left {
   from {
     transform: rotateY(0deg);
@@ -314,6 +359,27 @@
   to {
     transform: rotateY(140deg);
   }
+}
+
+/* ===== 單開門 (.ani-cover-open-single) ===== */
+.ani-cover-open-single {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.ani-cover-open-single::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cover-color, #b61212);
+  z-index: 1;
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: cover-open-left 2s infinite alternate ease-in-out;
 }
 
 /* ===== 公轉 (.ani-revolve) ===== */
@@ -391,5 +457,54 @@
   }
   100% {
     left: 100%;
+  }
+}
+/* 揭示 */
+.ani-grow-up {
+  animation: grow-up 2s infinite ease-in-out;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+.ani-grow-right {
+  animation: grow-right 2s infinite ease-in-out;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+@keyframes grow-up {
+  0% {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+@keyframes grow-right {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* 震動 */
+.ani-vibrate {
+  animation: vibrate 0.5s linear 0s infinite normal both running;
+}
+@keyframes vibrate {
+  0%,
+  to {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
   }
 }
