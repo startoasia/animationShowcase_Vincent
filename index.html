@@ -42,6 +42,11 @@
         padding-bottom: 10px;
         margin-top: 0;
         color: #555;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      h2:hover {
+        color: #007bff;
       }
 
       .demo-box-container {
@@ -93,7 +98,7 @@
         font-weight: bold;
         text-decoration: none;
       }
-      .cssliblists{
+      .cssliblists {
         margin: 0 auto;
         font-size: 1.5rem;
         display: flex;
@@ -101,6 +106,25 @@
         flex-direction: column;
       }
 
+      /* 複製提示框樣式 */
+      .copy-toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .copy-toast.show {
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -112,12 +136,14 @@
         <div class="demo-section">
           <h2>外部動畫效果庫</h2>
           <p style="text-align: center; color: #666">
-            如果在下面的常用動畫中找不到心儀的效果，或者是想要更複雜華麗的動畫，<Br>可以去以下CSS動畫庫的網站瀏覽他們的Demo並指定想要的效果。</p>
+            如果在下面的常用動畫中找不到心儀的效果，或者是想要更複雜華麗的動畫，<br />可以去以下CSS動畫庫的網站瀏覽他們的Demo並指定想要的效果。
+          </p>
           <p class="cssliblists">
             <a href="https://animate.style/" style="text-align: center; color: #5b2d91"> animate.css </a>
             <a href="https://animista.net/play/basic" style="text-align: center; color: #5b2d91"> animista.net </a>
-            <a href="https://minimamente.com/project/magic/" style="text-align: center; color: #5b2d91"> minimamente </a>
-            
+            <a href="https://minimamente.com/project/magic/" style="text-align: center; color: #5b2d91">
+              minimamente
+            </a>
           </p>
         </div>
 
@@ -159,7 +185,7 @@
 
         <!-- 水平漂浮 -->
         <div class="demo-section">
-          <h2>水平漂浮 (.ani-float-horizontal)</h2>
+          <h2>漂浮 (.ani-float-horizontal)</h2>
           <div class="demo-box-container">
             <div class="demo-box ani-float-horizontal" style="background-color: #9c27b0">水平漂浮</div>
             <div class="demo-box ani-float-vertical" style="background-color: #2196f3">垂直漂浮</div>
@@ -207,15 +233,13 @@
             <div class="demo-box ani-rotate" style="background-color: #9c0c0c">旋轉(中心)</div>
           </div>
         </div>
+        <!-- 公轉 -->
         <div class="demo-section">
-          <!-- 公轉 -->
-          <div class="demo-section">
-            <h2>公轉 (.ani-revolve)</h2>
-            <div class="demo-box-container-large relative">
-              <div class="absolute demo-box ani-revolve ball" style="background-color: #ff0000">公轉</div>
-              <div class="absolute demo-box ani-revolve-2 ball" style="background-color: #33ff00">公轉</div>
-              <div class="absolute demo-box ani-revolve-3 ball" style="background-color: #0011ff">公轉</div>
-            </div>
+          <h2>公轉 (.ani-revolve)</h2>
+          <div class="demo-box-container-large relative">
+            <div class="absolute demo-box ani-revolve ball" style="background-color: #ff0000">公轉</div>
+            <div class="absolute demo-box ani-revolve-2 ball" style="background-color: #33ff00">公轉</div>
+            <div class="absolute demo-box ani-revolve-3 ball" style="background-color: #0011ff">公轉</div>
           </div>
         </div>
 
@@ -361,6 +385,42 @@
         once: false, // whether animation should happen only once - while scrolling down
         mirror: false, // whether elements should animate out while scrolling past them
         anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+      });
+
+      // 點擊 H2 複製名稱功能
+      document.addEventListener("DOMContentLoaded", () => {
+        // 建立 Toast 元素
+        const toast = document.createElement("div");
+        toast.className = "copy-toast";
+        document.body.appendChild(toast);
+        let toastTimer;
+
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.remove("show");
+          }, 2000);
+        }
+
+        const headers = document.querySelectorAll("h2");
+        headers.forEach((h2) => {
+          h2.addEventListener("click", () => {
+            const text = h2.innerText;
+            // 抓取括號前的中文名稱 (移除 .class 或英文註釋)
+            const copyText = text.replace(/\s*\([.a-zA-Z].*/, "").trim();
+
+            navigator.clipboard
+              .writeText(copyText)
+              .then(() => {
+                showToast(`已複製: ${copyText}`);
+              })
+              .catch((err) => {
+                console.error("複製失敗:", err);
+              });
+          });
+        });
       });
     </script>
   </body>
