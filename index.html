@@ -42,11 +42,6 @@
         padding-bottom: 10px;
         margin-top: 0;
         color: #555;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      h2:hover {
-        color: #007bff;
       }
 
       .demo-box-container {
@@ -77,6 +72,8 @@
         color: white;
         font-weight: bold;
         font-size: 1rem;
+        cursor: pointer;
+        user-select: none;
       }
       .demo-box-gray {
         background-color: #a1a1a1;
@@ -139,8 +136,12 @@
             如果在下面的常用動畫中找不到心儀的效果，或者是想要更複雜華麗的動畫，<br />可以去以下CSS動畫庫的網站瀏覽他們的Demo並指定想要的效果。
           </p>
           <p class="cssliblists">
-            <a href="https://animate.style/" style="text-align: center; color: #5b2d91" target=”_blank”> animate.css </a>
-            <a href="https://animista.net/play/basic" target=”_blank” style="text-align: center; color: #5b2d91"> animista.net </a>
+            <a href="https://animate.style/" style="text-align: center; color: #5b2d91" target="”_blank”">
+              animate.css
+            </a>
+            <a href="https://animista.net/play/basic" target="”_blank”" style="text-align: center; color: #5b2d91">
+              animista.net
+            </a>
           </p>
         </div>
 
@@ -407,12 +408,12 @@
           }, 2000);
         }
 
-        const headers = document.querySelectorAll("h2");
-        headers.forEach((h2) => {
-          h2.addEventListener("click", () => {
-            const text = h2.innerText;
-            // 抓取括號前的中文名稱 (移除 .class 或英文註釋)
-            const copyText = text.replace(/\s*\([.a-zA-Z].*/, "").trim();
+        const demoElements = document.querySelectorAll(".demo-box, .light-button, .light-button-white");
+        demoElements.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            const copyText = el.innerText.trim();
+            if (!copyText) return;
 
             navigator.clipboard
               .writeText(copyText)
