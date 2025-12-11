@@ -331,17 +331,18 @@
   height: 100%;
   background: var(--cover-color, #b61212);
   z-index: 1;
-  border-radius: inherit; /* 繼承父元素的圓角 */
 }
 .ani-cover-open::before {
   left: 0;
   transform-origin: left center;
   animation: cover-open-left 2s infinite alternate ease-in-out;
+  border-radius: 15px 0 0 15px; /* 繼承父元素的圓角 */
 }
 .ani-cover-open::after {
   right: 0;
   transform-origin: right center;
   animation: cover-open-right 2s infinite alternate ease-in-out;
+  border-radius: 0 15px 15px 0; /* 繼承父元素的圓角 */
 }
 @keyframes cover-open-left {
   from {
