@@ -13,6 +13,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <link rel="stylesheet" href="css/myani.css" />
+    <link rel="stylesheet" href="css/hover-min.css" />
     <style>
       body {
         background-color: #f0f0f0;
@@ -78,6 +79,33 @@
       .demo-box-gray {
         background-color: #a1a1a1;
       }
+      .demo-box-outline {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #555;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000000;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        user-select: none;
+        background-color: #cacaca;
+        position: relative; /* 確保偽元素定位正確 */
+      }
+      /* 讓 hover.css 的偽元素特效(如 Ripple, Outline)繼承圓角 */
+      .demo-box-outline:before,
+      .demo-box-outline:after {
+        border-radius: inherit;
+      }
+      /* 用於背景變換區塊：隱藏溢出的背景色，確保填滿效果符合圓角 */
+      .demo-box-clip {
+        overflow: hidden;
+        /* 修正部分瀏覽器在圓角 overflow:hidden 時的渲染瑕疵 */
+        transform: translateZ(0); 
+      }
 
       .light-button {
         background-color: #007bff;
@@ -141,6 +169,9 @@
             </a>
             <a href="https://animista.net/play/basic" target="”_blank”" style="text-align: center; color: #5b2d91">
               animista.net
+            </a>
+            <a href="https://remino.net/scrollerful/demo/" target="”_blank”" style="text-align: center; color: #5b2d91">
+              scrollerful
             </a>
           </p>
         </div>
@@ -389,6 +420,80 @@
             </div>
           </div>
         </div>
+
+        <!-- ========== Hover 效果 ========== -->
+        <h1 style="margin-top: 80px; color: #e91e63">滑鼠游標Hover互動效果</h1>
+        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">
+          （請將滑鼠游標移至方塊上查看效果）
+        </p>
+
+        <!-- 2D 變形 -->
+        <div class="demo-section">
+          <h2>2D 變形 (2D Transitions)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box hvr-grow" style="background-color: #e91e63">Grow</div>
+            <div class="demo-box hvr-shrink" style="background-color: #9c27b0">Shrink</div>
+            <div class="demo-box hvr-pulse" style="background-color: #673ab7">Pulse</div>
+            <div class="demo-box hvr-push" style="background-color: #3f51b5">Push</div>
+            <div class="demo-box hvr-pop" style="background-color: #2196f3">Pop</div>
+            <div class="demo-box hvr-bounce-in" style="background-color: #03a9f4">Bounce In</div>
+            <div class="demo-box hvr-rotate" style="background-color: #00bcd4">Rotate</div>
+            <div class="demo-box hvr-grow-rotate" style="background-color: #009688">Grow Rotate</div>
+            <div class="demo-box hvr-float" style="background-color: #4caf50">Float</div>
+            <div class="demo-box hvr-sink" style="background-color: #8bc34a">Sink</div>
+            <div class="demo-box hvr-bob" style="background-color: #cddc39">Bob</div>
+            <div class="demo-box hvr-hang" style="background-color: #ffeb3b; color: #333">Hang</div>
+            <div class="demo-box hvr-skew" style="background-color: #ffc107; color: #333">Skew</div>
+            <div class="demo-box hvr-skew-forward" style="background-color: #ff9800">Skew Fwd</div>
+            <div class="demo-box hvr-wobble-horizontal" style="background-color: #ff5722">Wobble H</div>
+            <div class="demo-box hvr-wobble-vertical" style="background-color: #795548">Wobble V</div>
+          </div>
+        </div>
+
+        <!-- 背景變換 -->
+        <div class="demo-section">
+          <h2>背景變換 (Background Transitions)</h2>
+          <p style="text-align: center; color: #666; font-size: 0.9rem;">(使用空心樣式以展示背景填滿效果)</p>
+          <div class="demo-box-container">
+            <div class="demo-box-outline demo-box-clip hvr-fade">Fade</div>
+            <div class="demo-box-outline demo-box-clip hvr-sweep-to-right">Sweep Right</div>
+            <div class="demo-box-outline demo-box-clip hvr-sweep-to-left">Sweep Left</div>
+            <div class="demo-box-outline demo-box-clip hvr-sweep-to-bottom">Sweep Btm</div>
+            <div class="demo-box-outline demo-box-clip hvr-sweep-to-top">Sweep Top</div>
+            <div class="demo-box-outline demo-box-clip hvr-bounce-to-right">Bounce Right</div>
+            <div class="demo-box-outline demo-box-clip hvr-bounce-to-bottom">Bounce Btm</div>
+            <div class="demo-box-outline demo-box-clip hvr-radial-out">Radial Out</div>
+            <div class="demo-box-outline demo-box-clip hvr-radial-in">Radial In</div>
+            <div class="demo-box-outline demo-box-clip hvr-rectangle-in">Rect In</div>
+            <div class="demo-box-outline demo-box-clip hvr-rectangle-out">Rect Out</div>
+            <div class="demo-box-outline demo-box-clip hvr-shutter-in-horizontal">Shutter In H</div>
+            <div class="demo-box-outline demo-box-clip hvr-shutter-out-horizontal">Shutter Out H</div>
+            <div class="demo-box-outline demo-box-clip hvr-shutter-in-vertical">Shutter In V</div>
+            <div class="demo-box-outline demo-box-clip hvr-shutter-out-vertical">Shutter Out V</div>
+          </div>
+        </div>
+
+        <!-- 邊框與陰影 -->
+        <div class="demo-section">
+          <h2>邊框與陰影 (Border & Shadow)</h2>
+          <div class="demo-box-container">
+            <div class="demo-box-outline hvr-border-fade">Border Fade</div>
+            <div class="demo-box-outline hvr-hollow">Hollow</div>
+            <div class="demo-box-outline hvr-trim">Trim</div>
+            <div class="demo-box-outline hvr-ripple-out">Ripple Out</div>
+            <div class="demo-box-outline hvr-outline-out">Outline Out</div>
+            <div class="demo-box-outline hvr-outline-in">Outline In</div>
+            <div class="demo-box-outline hvr-round-corners">Round Corners</div>
+            <div class="demo-box-outline hvr-underline-from-left">Underline Left</div>
+            <div class="demo-box-outline hvr-underline-from-center">Underline Ctr</div>
+            <div class="demo-box-outline hvr-reveal">Reveal</div>
+            <div class="demo-box-outline hvr-glow">Glow</div>
+            <div class="demo-box-outline hvr-shadow">Shadow</div>
+            <div class="demo-box-outline hvr-grow-shadow">Grow Shadow</div>
+            <div class="demo-box-outline hvr-box-shadow-outset">Box Shadow Out</div>
+            <div class="demo-box-outline hvr-box-shadow-inset">Box Shadow In</div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- AOS -->
@@ -423,7 +528,7 @@
           }, 2000);
         }
 
-        const demoElements = document.querySelectorAll(".demo-box, .light-button, .light-button-white");
+        const demoElements = document.querySelectorAll(".demo-box, .demo-box-outline, .light-button, .light-button-white");
         demoElements.forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
