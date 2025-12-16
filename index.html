@@ -105,7 +105,7 @@
       .demo-box-clip {
         overflow: hidden;
         /* 修正部分瀏覽器在圓角 overflow:hidden 時的渲染瑕疵 */
-        transform: translateZ(0); 
+        transform: translateZ(0);
       }
 
       .light-button {
@@ -186,7 +186,7 @@
           <div class="demo-box-container demo-box-gray">
             <a href="#" class="light goldenlight light-button-white">掃金光</a>
           </div>
-          <p style="display: flex; justify-content: center">(白底或淺色底用)<br>掃光顏色可客製化</p>
+          <p style="display: flex; justify-content: center">(白底或淺色底用)<br />掃光顏色可客製化</p>
         </div>
 
         <!-- 彈跳 -->
@@ -424,14 +424,20 @@
         </div>
         <!-- ========== 點擊 效果 ========== -->
         <h1 style="margin-top: 80px; color: #e91e63">點擊互動特效</h1>
-        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">
-          （請點擊方塊以查看效果）
-        </p>
+        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">（請點擊方塊以查看效果）</p>
         <!-- 點擊灑花 -->
         <div class="demo-section">
           <h2>點擊灑花</h2>
+          <p style="text-align: center; color: #666">撒出的色塊顏色可調</p>
           <div class="demo-box-container">
             <a href="#" id="confettiBtn" class="light-button">點擊灑花</a>
+            <a
+              href="#"
+              id="confettiViewportBtn"
+              class="light-button"
+              style="margin-left: 20px; background-color: #9c27b0"
+              >全螢幕灑花</a
+            >
           </div>
         </div>
         <!-- ========== Hover 效果 ========== -->
@@ -466,7 +472,7 @@
         <!-- 背景變換 -->
         <div class="demo-section">
           <h2>背景變換 (Background Transitions)</h2>
-          <p style="text-align: center; color: #666; font-size: 0.9rem;">(使用空心樣式以展示背景填滿效果)</p>
+          <p style="text-align: center; color: #666; font-size: 0.9rem">(使用空心樣式以展示背景填滿效果)</p>
           <div class="demo-box-container">
             <div class="demo-box-outline demo-box-clip hvr-fade">Fade</div>
             <div class="demo-box-outline demo-box-clip hvr-sweep-to-right">Sweep Right</div>
@@ -541,7 +547,9 @@
           }, 2000);
         }
 
-        const demoElements = document.querySelectorAll(".demo-box, .demo-box-outline, .light-button, .light-button-white");
+        const demoElements = document.querySelectorAll(
+          ".demo-box, .demo-box-outline, .light-button, .light-button-white"
+        );
         demoElements.forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
