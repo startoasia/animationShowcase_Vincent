@@ -509,3 +509,31 @@
     transform: translate(2px, -2px);
   }
 }
+/* 明暗切換 */
+.ani-darkermasker {
+  animation: darkermasker 4s infinite ease-in-out;
+  filter: brightness(30%);
+}
+@keyframes darkermasker {
+  0% {
+    filter: brightness(30%);
+  }
+  25% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(30%);
+  }
+  100% {
+    filter: brightness(30%);
+  }
+}
+.delay-1s {
+  animation-delay: 1s;
+}
+.delay-2s {
+  animation-delay: 2s;
+}
+.delay-3s {
+  animation-delay: 3s;
+}
