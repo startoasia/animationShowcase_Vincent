@@ -3,585 +3,760 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSS 動畫效果 Demo</title>
-    <link rel="stylesheet" href="css/all.css" />
-    <!-- AOS -->
+    <title>CSS 動畫效果 Demo｜PM 選效果菜單</title>
+    <meta name="description" content="" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS (scroll-trigger animation library) -->
     <link
       rel="preload"
       href="https://unpkg.com/aos@2.3.1/dist/aos.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/myani.css" />
-    <link rel="stylesheet" href="css/hover-min.css" />
     <link rel="stylesheet" href="css/clickani.css" />
-    <style>
-      body {
-        background-color: #f0f0f0;
-        padding-bottom: 100px;
-      }
-
-      .demo-container {
-        padding: 20px;
-      }
-
-      h1 {
-        text-align: center;
-        margin-bottom: 40px;
-        color: #333;
-      }
-
-      .demo-section {
-        margin-bottom: 50px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      h2 {
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        margin-top: 0;
-        color: #555;
-      }
-
-      .demo-box-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
-        align-items: center;
-        min-height: 150px;
-      }
-      .demo-box-container-large {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
-        align-items: center;
-        min-height: 400px;
-      }
-
-      .demo-box {
-        width: 100px;
-        height: 100px;
-        background-color: #ff6a80;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        user-select: none;
-      }
-      .demo-box-gray {
-        background-color: #a1a1a1;
-      }
-      .demo-box-outline {
-        width: 100px;
-        height: 100px;
-        border: 2px solid #555;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #000000;
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        user-select: none;
-        background-color: #629e56;
-        position: relative; /* 確保偽元素定位正確 */
-      }
-      /* 讓 hover.css 的偽元素特效(如 Ripple, Outline)繼承圓角 */
-      .demo-box-outline:before,
-      .demo-box-outline:after {
-        border-radius: inherit;
-      }
-      /* 用於背景變換區塊：隱藏溢出的背景色，確保填滿效果符合圓角 */
-      .demo-box-clip {
-        overflow: hidden;
-        /* 修正部分瀏覽器在圓角 overflow:hidden 時的渲染瑕疵 */
-        transform: translateZ(0);
-      }
-
-      .light-button {
-        background-color: #007bff;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      .light-button-white {
-        background-color: #fff;
-        color: #000;
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      .cssliblists {
-        margin: 0 auto;
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      /* 複製提示框樣式 */
-      .copy-toast {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-size: 14px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-        z-index: 9999;
-      }
-      .copy-toast.show {
-        opacity: 1;
-      }
-    </style>
   </head>
+
   <body>
-    <div class="wrap">
-      <div class="demo-container">
-        <h1>常用 CSS 動畫效果 Demo</h1>
+    <div class="app-shell">
 
-        <!-- 外接動畫庫 -->
-        <div class="demo-section">
-          <h2>外部動畫效果庫</h2>
-          <p style="text-align: center; color: #666">
-            如果在下面的常用動畫中找不到心儀的效果，或者是想要更複雜華麗的動畫，<br />可以去以下CSS動畫庫的網站瀏覽他們的Demo並指定想要的效果。
-          </p>
-          <p class="cssliblists">
-            <a href="https://animate.style/" style="text-align: center; color: #5b2d91" target="”_blank”">
-              animate.css
-            </a>
-            <a href="https://animista.net/play/basic" target="”_blank”" style="text-align: center; color: #5b2d91">
-              animista.net
-            </a>
-            <a href="https://remino.net/scrollerful/demo/" target="”_blank”" style="text-align: center; color: #5b2d91">
-              scrollerful
-            </a>
-          </p> 
+      <!-- ======== TOP APP BAR ======== -->
+      <header class="top-app-bar" id="top-app-bar">
+        <button class="top-bar-menu-btn" id="menuToggleBtn" aria-label="開啟導覽選單" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="top-bar-titles">
+          <div class="top-bar-title">CSS 動畫效果 Demo</div>
         </div>
+      </header>
 
-        <!-- 按鈕閃光 -->
-        <div class="demo-section">
-          <h2>掃光 (.light)</h2>
-          <div class="demo-box-container">
-            <a href="#" class="light light-button">掃光</a>
-          </div>
-          <div class="demo-box-container demo-box-gray">
-            <a href="#" class="light goldenlight light-button-white">掃金光</a>
-          </div>
-          <p style="display: flex; justify-content: center">(白底或淺色底用)<br />掃光顏色可客製化</p>
-        </div>
+      <!-- ======== APP BODY ======== -->
+      <div class="app-body">
 
-        <!-- 彈跳 -->
-        <div class="demo-section">
-          <h2>彈跳 (.ani-bounce)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-bounce">彈跳</div>
-          </div>
-        </div>
+        <!-- ======== NAV OVERLAY (mobile) ======== -->
+        <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
-        <!-- 縮放 -->
-        <div class="demo-section">
-          <h2>縮放 (.ani-scale)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-scale">縮放</div>
-            <div class="demo-box ani-miniscale" style="background-color: #396a92">小縮放</div>
-          </div>
-        </div>
+        <!-- ======== NAVIGATION DRAWER ======== -->
+        <nav class="nav-drawer" id="navDrawer" aria-label="動畫分類導覽">
 
-        <!-- 心跳 -->
-        <div class="demo-section">
-          <h2>心跳(.ani-heartBeat)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-heartBeat" style="background-color: #da3333">心跳</div>
-          </div>
-        </div>
+          <!-- 外部資源 -->
+          <div class="nav-group-label">資源</div>
+          <a href="#section-external" class="nav-item" data-section="section-external">
+            <span class="nav-item-icon">🔗</span>外部動畫庫
+          </a>
 
-        <!-- 水平漂浮 -->
-        <div class="demo-section">
-          <h2>漂浮 (.ani-float-horizontal)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-float-horizontal" style="background-color: #9c27b0">水平漂浮</div>
-            <div class="demo-box ani-float-vertical" style="background-color: #2196f3">垂直漂浮</div>
-          </div>
-        </div>
+          <!-- 持續動畫 -->
+          <div class="nav-group-label">持續動畫</div>
+          <a href="#section-light" class="nav-item" data-section="section-light">
+            <span class="nav-item-icon">✨</span>掃光
+          </a>
+          <a href="#section-bounce" class="nav-item" data-section="section-bounce">
+            <span class="nav-item-icon">🏀</span>彈跳
+          </a>
+          <a href="#section-scale" class="nav-item" data-section="section-scale">
+            <span class="nav-item-icon">🔍</span>縮放
+          </a>
+          <a href="#section-heartbeat" class="nav-item" data-section="section-heartbeat">
+            <span class="nav-item-icon">❤️</span>心跳
+          </a>
+          <a href="#section-float" class="nav-item" data-section="section-float">
+            <span class="nav-item-icon">🌊</span>漂浮
+          </a>
+          <a href="#section-vibrate" class="nav-item" data-section="section-vibrate">
+            <span class="nav-item-icon">📳</span>震動
+          </a>
+          <a href="#section-twinkle" class="nav-item" data-section="section-twinkle">
+            <span class="nav-item-icon">💡</span>閃爍
+          </a>
+          <a href="#section-seesaw" class="nav-item" data-section="section-seesaw">
+            <span class="nav-item-icon">⚖️</span>蹺蹺板
+          </a>
+          <a href="#section-swing" class="nav-item" data-section="section-swing">
+            <span class="nav-item-icon">🕰</span>鐘擺
+          </a>
+          <a href="#section-rotate" class="nav-item" data-section="section-rotate">
+            <span class="nav-item-icon">🔄</span>旋轉
+          </a>
+          <a href="#section-revolve" class="nav-item" data-section="section-revolve">
+            <span class="nav-item-icon">🪐</span>公轉
+          </a>
+          <a href="#section-flip" class="nav-item" data-section="section-flip">
+            <span class="nav-item-icon">🔃</span>翻轉
+          </a>
+          <a href="#section-openbox" class="nav-item" data-section="section-openbox">
+            <span class="nav-item-icon">🚪</span>開箱
+          </a>
+          <a href="#section-beaf" class="nav-item" data-section="section-beaf">
+            <span class="nav-item-icon">🖼</span>前後對比圖
+          </a>
+          <a href="#section-grow" class="nav-item" data-section="section-grow">
+            <span class="nav-item-icon">🌱</span>生長
+          </a>
+          <a href="#section-darken" class="nav-item" data-section="section-darken">
+            <span class="nav-item-icon">🌓</span>明暗切換
+          </a>
+          <a href="#section-rubber" class="nav-item" data-section="section-rubber">
+            <span class="nav-item-icon">🧃</span>橡皮筋／果凍
+          </a>
 
-        <!-- 震動 -->
-        <div class="demo-section">
-          <h2>震動 (.ani-vibrate )</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-vibrate" style="background-color: #45aa94">震動</div>
-          </div>
-        </div>
+          <!-- 滑動觸發 -->
+          <div class="nav-group-label">滑動觸發</div>
+          <a href="#section-fadein" class="nav-item" data-section="section-fadein">
+            <span class="nav-item-icon">👁</span>淡入系列
+          </a>
+          <a href="#section-zoomin" class="nav-item" data-section="section-zoomin">
+            <span class="nav-item-icon">🔭</span>浮出系列
+          </a>
+          <a href="#section-zoomout" class="nav-item" data-section="section-zoomout">
+            <span class="nav-item-icon">📦</span>置入系列
+          </a>
+          <a href="#section-flipin" class="nav-item" data-section="section-flipin">
+            <span class="nav-item-icon">🔁</span>翻入系列
+          </a>
 
-        <!-- 閃爍 -->
-        <div class="demo-section">
-          <h2>閃爍 (.ani-twinkle)</h2>
-          <p style="display: flex; justify-content: center">(閃爍頻率與節奏可客製化)</p>
-          <div class="demo-box-container">
-            <div class="demo-box ani-twinkle" style="background-color: #607d8b">星星</div>
-            <div class="demo-box ani-strobe" style="background-color: #ad0c0c">頻閃</div>
-            <div class="demo-box ani-warning-light" style="background-color: #ff9800">警示燈</div>
-          </div>
-        </div>
+          <!-- 點擊互動 -->
+          <div class="nav-group-label">點擊互動</div>
+          <a href="#section-confetti" class="nav-item" data-section="section-confetti">
+            <span class="nav-item-icon">🎉</span>點擊灑花
+          </a>
+        </nav>
 
-        <!-- 蹺蹺板 -->
-        <div class="demo-section">
-          <h2>蹺蹺板 (.ani-seesaw)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-seesaw" style="background-color: #795548">蹺蹺板</div>
-          </div>
-        </div>
+        <!-- ======== MAIN CONTENT ======== -->
+        <main class="main-content">
 
-        <!-- 鐘擺 -->
-        <div class="demo-section">
-          <h2>鐘擺 (.ani-swing)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-swing" style="background-color: #009688">鐘擺</div>
-          </div>
-        </div>
+          <!-- ─────────────────────────────────────
+               外部動畫庫
+          ───────────────────────────────────── -->
+          <section id="section-external" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔗 外部動畫效果庫</h2>
+            </div>
+            <p class="demo-card-desc">
+              找不到心儀效果，或想要更複雜華麗的動畫？前往以下 CSS 動畫庫瀏覽並指定效果。
+            </p>
+            <div class="demo-card-body">
+              <div class="lib-links">
+                <a href="https://animate.style/" class="lib-link-item" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  animate.css
+                </a>
+                <a href="https://animista.net/play/basic" class="lib-link-item" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  animista.net
+                </a>
+                <a href="https://remino.net/scrollerful/demo/" class="lib-link-item" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  scrollerful
+                </a>
+              </div>
+            </div>
+          </section>
 
-        <!-- 旋轉 -->
-        <div class="demo-section">
-          <h2>旋轉 (.ani-rotate)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-rotate" style="background-color: #9c0c0c">旋轉(中心)</div>
+          <!-- ─────────────────────────────────────
+               持續動畫 分類標題
+          ───────────────────────────────────── -->
+          <div class="section-category-header">
+            <div class="section-category-dot" style="background: var(--md-sys-color-primary)"></div>
+            <h1 class="section-category-title">持續動畫</h1>
+            <span class="section-category-desc">元素持續循環播放，無需互動觸發</span>
           </div>
-        </div>
-        <!-- 公轉 -->
-        <div class="demo-section">
-          <h2>公轉 (.ani-revolve)</h2>
-          <div class="demo-box-container-large relative">
-            <div class="absolute demo-box ani-revolve ball" style="background-color: #ff0000">公轉</div>
-            <div class="absolute demo-box ani-revolve-2 ball" style="background-color: #33ff00">公轉</div>
-            <div class="absolute demo-box ani-revolve-3 ball" style="background-color: #0011ff">公轉</div>
-          </div>
-        </div>
 
-        <!-- 翻轉 -->
-        <div class="demo-section">
-          <h2>翻轉 (.ani-flip, .ani-flip-vertical)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-flip" style="background-color: #a1887f">水平翻轉</div>
-            <div class="demo-box ani-flip-vertical" style="background-color: #8d6e63">垂直翻轉</div>
-          </div>
-        </div>
-        <!-- 開合 -->
-        <div class="demo-section">
-          <h2>開箱 (.ani-cover-open)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box ani-cover-open" style="background-color: #78909c">雙門開箱</div>
-            <div class="demo-box ani-cover-open-single" style="background-color: #546e7a; margin-left: 120px">
-              單門開箱
+          <!-- 掃光 -->
+          <section id="section-light" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">✨ 掃光</h2>
+              <button class="demo-card-chip" data-copy=".light" id="chip-light">
+                📋 .light
+              </button>
             </div>
-          </div>
-        </div>
+            <p class="demo-card-desc">掃光顏色可客製化；白底或淺色底可改用 .goldenlight（掃金光）</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <a href="#" class="light light-button">掃光</a>
+              </div>
+              <div class="demo-stage demo-stage-dark" style="margin-top: 12px;">
+                <a href="#" class="light goldenlight light-button-white">掃金光（白底用）</a>
+              </div>
+            </div>
+          </section>
 
-        <!-- 前後對比圖 -->
-        <div class="demo-section">
-          <h2>前後對比圖 (.BeAf_container)</h2>
-          <p style="text-align: center; color: #666">這是一個純 CSS 實現的圖片左右滑動對比效果。</p>
-          <div class="relative" style="max-width: 500px; margin: 0 auto">
-            <div class="BeAf_container" style="height: 300px">
-              <div class="BeAf_image" style="background-color: #ccc"></div>
-              <div class="BeAf_image BeAf_top" style="background-color: #ff6a80"></div>
-              <div class="BeAf_line"></div>
+          <!-- 彈跳 -->
+          <section id="section-bounce" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🏀 彈跳</h2>
+              <button class="demo-card-chip" data-copy=".ani-bounce" id="chip-bounce">
+                📋 .ani-bounce
+              </button>
             </div>
-          </div>
-        </div>
-        <!-- 揭示 -->
-        <div class="demo-section">
-          <h2>生長 (.ani-grow-up)</h2>
-          <p style="text-align: center; color: #666">方向/速度可客製</p>
-          <div class="demo-box-container">
-            <div class="demo-box ani-grow-up" style="background-color: #2d3c64">向上生長</div>
-            <div class="demo-box ani-grow-right" style="background-color: #2d6434">向右生長</div>
-          </div>
-        </div>
-        <!-- 明暗切換 -->
-        <div class="demo-section">
-          <h2>明暗切換 (.ani-darkermasker)</h2>
-          <p style="text-align: center; color: #666">數量/時間可客製</p>
-          <div class="demo-box-container">
-            <div class="demo-box ani-darkermasker" style="background-color: #2d3c64">明暗切換</div>
-            <div class="demo-box ani-darkermasker delay-1s" style="background-color: #2d6434">明暗切換</div>
-            <div class="demo-box ani-darkermasker delay-2s" style="background-color: #ff6a80">明暗切換</div>
-            <div class="demo-box ani-darkermasker delay-3s" style="background-color: #ff9800">明暗切換</div>
-          </div>
-        </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-bounce">彈跳</div>
+              </div>
+            </div>
+          </section>
 
-        <!-- ========== 滑動觸發效果 ========== -->
-        <h1 style="margin-top: 80px; color: #007bff">滑動觸發效果</h1>
-        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">
-          （以下效果設定為滑動到可視範圍時才觸發）
-        </p>
-        <div class="demo-section">
-          <h2>淡入(Fade In)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="fade-in" data-aos-delay="150" style="background-color: #438eff">淡入</div>
-          </div>
-        </div>
-        <div class="demo-section">
-          <h2>向(八方向)淡入</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="fade-down-right" data-aos-delay="150" style="background-color: #444444">
-              向右下淡入
+          <!-- 縮放 -->
+          <section id="section-scale" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔍 縮放</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-scale" id="chip-scale">
+                  📋 .ani-scale
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-miniscale" id="chip-miniscale">
+                  📋 .ani-miniscale
+                </button>
+              </div>
             </div>
-            <div class="demo-box" data-aos="fade-down" data-aos-delay="150" style="background-color: #929292">
-              向下淡入
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-scale">縮放</div>
+                <div class="demo-box ani-miniscale" style="background-color: #396a92">小縮放</div>
+              </div>
             </div>
-            <div class="demo-box" data-aos="fade-right" data-aos-delay="150" style="background-color: #940000">
-              向右淡入
-            </div>
-            <div class="demo-box" data-aos="fade-down-left" data-aos-delay="150" style="background-color: #a85a00">
-              向左下淡入
-            </div>
-          </div>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="fade-up-right" data-aos-delay="150" style="background-color: #bba800">
-              向右上淡入
-            </div>
-            <div class="demo-box" data-aos="fade-left" data-aos-delay="150" style="background-color: #00b309">
-              向左淡入
-            </div>
-            <div class="demo-box" data-aos="fade-up" data-aos-delay="150" style="background-color: #7c9fff">
-              向上淡入
-            </div>
-            <div class="demo-box" data-aos="fade-up-left" data-aos-delay="150" style="background-color: #c07cff">
-              向左上淡入
-            </div>
-          </div>
-        </div>
+          </section>
 
-        <div class="demo-section">
-          <h2>浮出 (Zoom In - 由小而大)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="zoom-in" data-aos-delay="150" style="background-color: #ff7043">浮出</div>
-          </div>
-        </div>
-        <div class="demo-section">
-          <h2>向(四方向)浮出</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="zoom-in-right" data-aos-delay="150" style="background-color: #ecd157">
-              向右浮出
+          <!-- 心跳 -->
+          <section id="section-heartbeat" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">❤️ 心跳</h2>
+              <button class="demo-card-chip" data-copy=".ani-heartBeat" id="chip-heartbeat">
+                📋 .ani-heartBeat
+              </button>
             </div>
-            <div class="demo-box" data-aos="zoom-in-down" data-aos-delay="150" style="background-color: #3a6894">
-              向下浮出
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-heartBeat" style="background-color: #da3333">心跳</div>
+              </div>
             </div>
-            <div class="demo-box" data-aos="zoom-in-up" data-aos-delay="150" style="background-color: #41682b">
-              向上浮出
-            </div>
-            <div class="demo-box" data-aos="zoom-in-left" data-aos-delay="150" style="background-color: #3a9485">
-              向左浮出
-            </div>
-          </div>
-        </div>
-        <div class="demo-section">
-          <h2>置入 (Zoom Out - 由大而小)</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="zoom-out" data-aos-delay="150" style="background-color: #be6ab7">置入</div>
-          </div>
-        </div>
-        <div class="demo-section">
-          <h2>向(四方向)置入</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="zoom-out-right" data-aos-delay="150" style="background-color: #5d4db8">
-              向右置入
-            </div>
-            <div class="demo-box" data-aos="zoom-out-down" data-aos-delay="150" style="background-color: #4d28b3">
-              向下置入
-            </div>
-            <div class="demo-box" data-aos="zoom-out-up" data-aos-delay="150" style="background-color: #682b63">
-              向上置入
-            </div>
-            <div class="demo-box" data-aos="zoom-out-left" data-aos-delay="150" style="background-color: #530e36">
-              向左置入
-            </div>
-          </div>
-        </div>
-        <div class="demo-section">
-          <h2>翻入</h2>
-          <div class="demo-box-container">
-            <div class="demo-box" data-aos="flip-right" data-aos-delay="150" style="background-color: #52c783">
-              向右翻入
-            </div>
-            <div class="demo-box" data-aos="flip-down" data-aos-delay="150" style="background-color: #67b4a1">
-              向下翻入
-            </div>
-            <div class="demo-box" data-aos="flip-up" data-aos-delay="150" style="background-color: #6680a8">
-              向上翻入
-            </div>
-            <div class="demo-box" data-aos="flip-left" data-aos-delay="150" style="background-color: #6773b4">
-              向左翻入
-            </div>
-          </div>
-        </div>
-        <!-- ========== 點擊 效果 ========== -->
-        <h1 style="margin-top: 80px; color: #e91e63">點擊互動特效</h1>
-        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">（請點擊方塊以查看效果）</p>
-        <!-- 點擊灑花 -->
-        <div class="demo-section">
-          <h2>點擊灑花</h2>
-          <p style="text-align: center; color: #666">撒出的色塊顏色可調</p>
-          <div class="demo-box-container">
-            <a href="#" id="confettiBtn" class="light-button">點擊灑花</a>
-            <a
-              href="#"
-              id="confettiViewportBtn"
-              class="light-button"
-              style="margin-left: 20px; background-color: #9c27b0"
-              >全螢幕灑花</a
-            >
-          </div>
-        </div>
-        <!-- ========== Hover 效果 ========== -->
-        <h1 style="margin-top: 80px; color: #e91e63">滑鼠游標Hover互動效果</h1>
-        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; color: #666">
-          （請將滑鼠游標移至方塊上查看效果）
-        </p>
+          </section>
 
-        <!-- 2D 變形 -->
-        <div class="demo-section">
-          <h2>2D 變形 (2D Transitions)</h2>
-          <h3 style="text-align: center; color: #666;">本區與持續動畫(縮放/彈跳等)不相容</h3>
-          <div class="demo-box-container">
-            <div class="demo-box hvr-grow" style="background-color: #e91e63">Grow</div>
-            <div class="demo-box hvr-shrink" style="background-color: #9c27b0">Shrink</div>
-            <div class="demo-box hvr-pulse" style="background-color: #673ab7">Pulse</div>
-            <div class="demo-box hvr-push" style="background-color: #3f51b5">Push</div>
-            <div class="demo-box hvr-pop" style="background-color: #2196f3">Pop</div>
-            <div class="demo-box hvr-bounce-in" style="background-color: #03a9f4">Bounce In</div>
-            <div class="demo-box hvr-rotate" style="background-color: #00bcd4">Rotate</div>
-            <div class="demo-box hvr-grow-rotate" style="background-color: #009688">Grow Rotate</div>
-            <div class="demo-box hvr-float" style="background-color: #4caf50">Float</div>
-            <div class="demo-box hvr-sink" style="background-color: #8bc34a">Sink</div>
-            <div class="demo-box hvr-bob" style="background-color: #cddc39">Bob</div>
-            <div class="demo-box hvr-hang" style="background-color: #ffeb3b; color: #333">Hang</div>
-            <div class="demo-box hvr-skew" style="background-color: #ffc107; color: #333">Skew</div>
-            <div class="demo-box hvr-skew-forward" style="background-color: #ff9800">Skew Fwd</div>
-            <div class="demo-box hvr-wobble-horizontal" style="background-color: #ff5722">Wobble H</div>
-            <div class="demo-box hvr-wobble-vertical" style="background-color: #795548">Wobble V</div>
-          </div>
-        </div>
+          <!-- 漂浮 -->
+          <section id="section-float" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🌊 漂浮</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-float-horizontal" id="chip-float-horizontal">
+                  📋 .ani-float-horizontal
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-float-vertical" id="chip-float-vertical">
+                  📋 .ani-float-vertical
+                </button>
+              </div>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-float-horizontal" style="background-color: #9c27b0">水平漂浮</div>
+                <div class="demo-box ani-float-vertical" style="background-color: #2196f3">垂直漂浮</div>
+              </div>
+            </div>
+          </section>
 
-        <!-- 背景變換 -->
-        <div class="demo-section">
-          <h2>背景變換 (Background Transitions)</h2>
-          <h3 style="text-align: center; color: #666;">本區與掃光不相容</h3>
-          <p style="text-align: center; color: #666; font-size: 0.9rem">(使用空心樣式以展示背景填滿效果)</p>
-          <div class="demo-box-container">
-            <div class="demo-box-outline demo-box-clip hvr-fade">Fade</div>
-            <div class="demo-box-outline demo-box-clip hvr-sweep-to-right">Sweep Right</div>
-            <div class="demo-box-outline demo-box-clip hvr-sweep-to-left">Sweep Left</div>
-            <div class="demo-box-outline demo-box-clip hvr-sweep-to-bottom">Sweep Btm</div>
-            <div class="demo-box-outline demo-box-clip hvr-sweep-to-top">Sweep Top</div>
-            <div class="demo-box-outline demo-box-clip hvr-bounce-to-right">Bounce Right</div>
-            <div class="demo-box-outline demo-box-clip hvr-bounce-to-bottom">Bounce Btm</div>
-            <div class="demo-box-outline demo-box-clip hvr-radial-out">Radial Out</div>
-            <div class="demo-box-outline demo-box-clip hvr-radial-in">Radial In</div>
-            <div class="demo-box-outline demo-box-clip hvr-rectangle-in">Rect In</div>
-            <div class="demo-box-outline demo-box-clip hvr-rectangle-out">Rect Out</div>
-            <div class="demo-box-outline demo-box-clip hvr-shutter-in-horizontal">Shutter In H</div>
-            <div class="demo-box-outline demo-box-clip hvr-shutter-out-horizontal">Shutter Out H</div>
-            <div class="demo-box-outline demo-box-clip hvr-shutter-in-vertical">Shutter In V</div>
-            <div class="demo-box-outline demo-box-clip hvr-shutter-out-vertical">Shutter Out V</div>
-          </div>
-        </div>
+          <!-- 震動 -->
+          <section id="section-vibrate" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">📳 震動</h2>
+              <button class="demo-card-chip" data-copy=".ani-vibrate" id="chip-vibrate">
+                📋 .ani-vibrate
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-vibrate" style="background-color: #45aa94">震動</div>
+              </div>
+            </div>
+          </section>
 
-        <!-- 邊框與陰影 -->
-        <div class="demo-section">
-          <h2>邊框與陰影 (Border & Shadow)</h2>
-          <h3 style="text-align: center; color: #666;">本區與掃光不相容</h3>
-          <div class="demo-box-container">
-            <div class="demo-box-outline hvr-border-fade">Border Fade</div>
-            <div class="demo-box-outline hvr-hollow">Hollow</div>
-            <div class="demo-box-outline hvr-trim">Trim</div>
-            <div class="demo-box-outline hvr-ripple-out">Ripple Out</div>
-            <div class="demo-box-outline hvr-outline-out">Outline Out</div>
-            <div class="demo-box-outline hvr-outline-in">Outline In</div>
-            <div class="demo-box-outline hvr-round-corners">Round Corners</div>
-            <div class="demo-box-outline hvr-underline-from-left">Underline Left</div>
-            <div class="demo-box-outline hvr-underline-from-center">Underline Ctr</div>
-            <div class="demo-box-outline hvr-reveal">Reveal</div>
-            <div class="demo-box-outline hvr-glow">Glow</div>
-            <div class="demo-box-outline hvr-shadow">Shadow</div>
-            <div class="demo-box-outline hvr-grow-shadow">Grow Shadow</div>
-            <div class="demo-box-outline hvr-box-shadow-outset">Box Shadow Out</div>
-            <div class="demo-box-outline hvr-box-shadow-inset">Box Shadow In</div>
+          <!-- 閃爍 -->
+          <section id="section-twinkle" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">💡 閃爍</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-twinkle" id="chip-twinkle">
+                  📋 .ani-twinkle
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-strobe" id="chip-strobe">
+                  📋 .ani-strobe
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-warning-light" id="chip-warning-light">
+                  📋 .ani-warning-light
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">閃爍頻率與節奏可客製化</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-twinkle" style="background-color: #607d8b">星星</div>
+                <div class="demo-box ani-strobe" style="background-color: #ad0c0c">頻閃</div>
+                <div class="demo-box ani-warning-light" style="background-color: #ff9800">警示燈</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 蹺蹺板 -->
+          <section id="section-seesaw" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">⚖️ 蹺蹺板</h2>
+              <button class="demo-card-chip" data-copy=".ani-seesaw" id="chip-seesaw">
+                📋 .ani-seesaw
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-seesaw" style="background-color: #795548">蹺蹺板</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 鐘擺 -->
+          <section id="section-swing" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🕰 鐘擺</h2>
+              <button class="demo-card-chip" data-copy=".ani-swing" id="chip-swing">
+                📋 .ani-swing
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-swing" style="background-color: #009688">鐘擺</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 旋轉 -->
+          <section id="section-rotate" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔄 旋轉</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-rotate" id="chip-rotate">
+                  📋 .ani-rotate
+                </button>
+              </div>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-rotate" style="background-color: #9c0c0c">旋轉 (中心)</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 公轉 -->
+          <section id="section-revolve" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🪐 公轉</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-revolve" id="chip-revolve">
+                  📋 .ani-revolve
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-revolve-2" id="chip-revolve-2">
+                  📋 .ani-revolve-2
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-revolve-3" id="chip-revolve-3">
+                  📋 .ani-revolve-3
+                </button>
+              </div>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage demo-stage-large relative">
+                <div class="absolute demo-box ani-revolve ball" style="background-color: #ff0000">公轉</div>
+                <div class="absolute demo-box ani-revolve-2 ball" style="background-color: #33ff00">公轉</div>
+                <div class="absolute demo-box ani-revolve-3 ball" style="background-color: #0011ff">公轉</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 翻轉 -->
+          <section id="section-flip" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔃 翻轉</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-flip" id="chip-flip">
+                  📋 .ani-flip
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-flip-vertical" id="chip-flip-vertical">
+                  📋 .ani-flip-vertical
+                </button>
+              </div>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-flip" style="background-color: #a1887f">水平翻轉</div>
+                <div class="demo-box ani-flip-vertical" style="background-color: #8d6e63">垂直翻轉</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 開箱 -->
+          <section id="section-openbox" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🚪 開箱</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-cover-open" id="chip-cover-open">
+                  📋 .ani-cover-open
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-cover-open-single" id="chip-cover-open-single">
+                  📋 .ani-cover-open-single
+                </button>
+              </div>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage" style="display: flex; justify-content: space-evenly;">
+                <div class="demo-box ani-cover-open" style="background-color: #78909c">雙門開箱</div>
+                <div class="demo-box ani-cover-open-single" style="background-color: #546e7a">單門開箱</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 前後對比圖 -->
+          <section id="section-beaf" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🖼 前後對比圖</h2>
+              <button class="demo-card-chip" data-copy=".BeAf_container" id="chip-beaf">
+                📋 .BeAf_container
+              </button>
+            </div>
+            <p class="demo-card-desc">圖片左右滑動對比效果，可預覽前後差異。</p>
+            <div class="demo-card-body">
+              <div class="beaf-wrapper">
+                <div class="BeAf_container" style="height: 280px">
+                  <div class="BeAf_image" style="background-color: #ccc"></div>
+                  <div class="BeAf_image BeAf_top" style="background-color: #ff6a80"></div>
+                  <div class="BeAf_line"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 生長 -->
+          <section id="section-grow" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🌱 生長</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-grow-up" id="chip-grow">
+                  📋 .ani-grow-up
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-grow-right" id="chip-grow-right">
+                  📋 .ani-grow-right
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">方向／速度可客製化</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-grow-up" style="background-color: #2d3c64">向上生長</div>
+                <div class="demo-box ani-grow-right" style="background-color: #2d6434">向右生長</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 明暗切換 -->
+          <section id="section-darken" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🌓 明暗切換</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-darkermasker" id="chip-darken">
+                  📋 .ani-darkermasker
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">數量／時間可客製化；可搭配 delay 做錯位效果</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-darkermasker" style="background-color: #2d3c64">明暗切換</div>
+                <div class="demo-box ani-darkermasker delay-1s" style="background-color: #2d6434">明暗切換</div>
+                <div class="demo-box ani-darkermasker delay-2s" style="background-color: #ff6a80">明暗切換</div>
+                <div class="demo-box ani-darkermasker delay-3s" style="background-color: #ff9800">明暗切換</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 橡皮筋與果凍 -->
+          <section id="section-rubber" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🧃 橡皮筋 ／ 果凍</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-rubberband" id="chip-rubber">
+                  📋 .ani-rubberband
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-jelly" id="chip-jelly">
+                  📋 .ani-jelly
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">可以與點擊等互動效果搭配使用</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box ani-rubberband" style="background-color: #e91e63">橡皮筋</div>
+                <div class="demo-box ani-jelly" style="background-color: #ff5722">果凍</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ─────────────────────────────────────
+               滑動觸發 分類標題
+          ───────────────────────────────────── -->
+          <div class="section-category-header">
+            <div class="section-category-dot" style="background: var(--md-sys-color-secondary)"></div>
+            <h1 class="section-category-title">滑動觸發效果</h1>
+            <span class="section-category-desc">滑動到可視範圍時才觸發</span>
           </div>
-        </div>
-      </div>
+
+          <!-- 淡入 -->
+          <section id="section-fadein" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">👁 淡入系列</h2>
+              <button class="demo-card-chip" data-copy="data-aos=&quot;fade-in&quot;" id="chip-fadein">
+                📋 fade-in
+              </button>
+            </div>
+            <p class="demo-card-desc">支援八個方向，用 data-aos 屬性指定。向下滾動後觸發。</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box" data-aos="fade-in" data-aos-delay="150" style="background-color: #438eff">淡入</div>
+              </div>
+              <div class="demo-stage" style="margin-top: 12px;">
+                <div class="demo-box" data-aos="fade-down-right" data-aos-delay="150" style="background-color: #444444">右下淡入</div>
+                <div class="demo-box" data-aos="fade-down" data-aos-delay="150" style="background-color: #929292">向下淡入</div>
+                <div class="demo-box" data-aos="fade-right" data-aos-delay="150" style="background-color: #940000">向右淡入</div>
+                <div class="demo-box" data-aos="fade-down-left" data-aos-delay="150" style="background-color: #a85a00">左下淡入</div>
+              </div>
+              <div class="demo-stage" style="margin-top: 12px;">
+                <div class="demo-box" data-aos="fade-up-right" data-aos-delay="150" style="background-color: #bba800">右上淡入</div>
+                <div class="demo-box" data-aos="fade-left" data-aos-delay="150" style="background-color: #00b309">向左淡入</div>
+                <div class="demo-box" data-aos="fade-up" data-aos-delay="150" style="background-color: #7c9fff">向上淡入</div>
+                <div class="demo-box" data-aos="fade-up-left" data-aos-delay="150" style="background-color: #c07cff">左上淡入</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 浮出 -->
+          <section id="section-zoomin" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔭 浮出系列（由小而大）</h2>
+              <button class="demo-card-chip" data-copy="data-aos=&quot;zoom-in&quot;" id="chip-zoomin">
+                📋 zoom-in
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box" data-aos="zoom-in" data-aos-delay="150" style="background-color: #ff7043">浮出</div>
+              </div>
+              <div class="demo-stage" style="margin-top: 12px;">
+                <div class="demo-box" data-aos="zoom-in-right" data-aos-delay="150" style="background-color: #ecd157">向右浮出</div>
+                <div class="demo-box" data-aos="zoom-in-down" data-aos-delay="150" style="background-color: #3a6894">向下浮出</div>
+                <div class="demo-box" data-aos="zoom-in-up" data-aos-delay="150" style="background-color: #41682b">向上浮出</div>
+                <div class="demo-box" data-aos="zoom-in-left" data-aos-delay="150" style="background-color: #3a9485">向左浮出</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 置入 -->
+          <section id="section-zoomout" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">📦 置入系列（由大而小）</h2>
+              <button class="demo-card-chip" data-copy="data-aos=&quot;zoom-out&quot;" id="chip-zoomout">
+                📋 zoom-out
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box" data-aos="zoom-out" data-aos-delay="150" style="background-color: #be6ab7">置入</div>
+              </div>
+              <div class="demo-stage" style="margin-top: 12px;">
+                <div class="demo-box" data-aos="zoom-out-right" data-aos-delay="150" style="background-color: #5d4db8">向右置入</div>
+                <div class="demo-box" data-aos="zoom-out-down" data-aos-delay="150" style="background-color: #4d28b3">向下置入</div>
+                <div class="demo-box" data-aos="zoom-out-up" data-aos-delay="150" style="background-color: #682b63">向上置入</div>
+                <div class="demo-box" data-aos="zoom-out-left" data-aos-delay="150" style="background-color: #530e36">向左置入</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 翻入 -->
+          <section id="section-flipin" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔁 翻入系列</h2>
+              <button class="demo-card-chip" data-copy="data-aos=&quot;flip-right&quot;" id="chip-flipin">
+                📋 flip-right
+              </button>
+            </div>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="demo-box" data-aos="flip-right" data-aos-delay="150" style="background-color: #52c783">向右翻入</div>
+                <div class="demo-box" data-aos="flip-down" data-aos-delay="150" style="background-color: #67b4a1">向下翻入</div>
+                <div class="demo-box" data-aos="flip-up" data-aos-delay="150" style="background-color: #6680a8">向上翻入</div>
+                <div class="demo-box" data-aos="flip-left" data-aos-delay="150" style="background-color: #6773b4">向左翻入</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ─────────────────────────────────────
+               點擊互動 分類標題
+          ───────────────────────────────────── -->
+          <div class="section-category-header">
+            <div class="section-category-dot" style="background: var(--md-sys-color-tertiary)"></div>
+            <h1 class="section-category-title">點擊互動特效</h1>
+            <span class="section-category-desc">點擊元素以查看效果</span>
+          </div>
+
+          <!-- 點擊灑花 -->
+          <section id="section-confetti" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🎉 點擊灑花</h2>
+            </div>
+            <p class="demo-card-desc">撒出的色塊顏色可調；全螢幕版會覆蓋整個瀏覽器視窗。</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <div class="click-btn-group">
+                  <a href="#" id="confettiBtn" class="light-button">🎊 點擊灑花</a>
+                  <a href="#" id="confettiViewportBtn" class="light-button" style="background-color: #9c27b0">🌟 全螢幕灑花</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div><!-- /app-body -->
+    </div><!-- /app-shell -->
+
+    <!-- ======== MD3 SNACKBAR ======== -->
+    <div class="snackbar" id="snackbar" role="status" aria-live="polite">
+      <div class="snackbar-icon">✓</div>
+      <span id="snackbar-text"></span>
     </div>
+
+    <!-- ======== SCRIPTS ======== -->
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // AOS
       AOS.init({
-        // Settings that can be overridden on per-element basis, by `aos-*` attributes:
-        offset: 120, // offset (in px) from the original trigger point
-        delay: 0, // values from 0 to 3000, with step 50ms
-        duration: 400, // values from 0 to 3000, with step 50ms
-        easing: "ease", // default easing for AOS animations
-        once: false, // whether animation should happen only once - while scrolling down
-        mirror: false, // whether elements should animate out while scrolling past them
-        anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+        offset: 120,
+        delay: 0,
+        duration: 400,
+        easing: "ease",
+        once: false,
+        mirror: false,
+        anchorPlacement: "top-bottom",
       });
+    </script>
 
-      // 點擊 H2 複製名稱功能
-      document.addEventListener("DOMContentLoaded", () => {
-        // 建立 Toast 元素
-        const toast = document.createElement("div");
-        toast.className = "copy-toast";
-        document.body.appendChild(toast);
-        let toastTimer;
+    <script>
+      // ── Snackbar ──────────────────────────────
+      const snackbar = document.getElementById("snackbar");
+      const snackbarText = document.getElementById("snackbar-text");
+      let snackbarTimer;
 
-        function showToast(message) {
-          toast.textContent = message;
-          toast.classList.add("show");
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => {
-            toast.classList.remove("show");
-          }, 2000);
-        }
+      function showSnackbar(message) {
+        snackbarText.textContent = message;
+        snackbar.classList.add("show");
+        clearTimeout(snackbarTimer);
+        snackbarTimer = setTimeout(() => {
+          snackbar.classList.remove("show");
+        }, 2200);
+      }
 
-        const demoElements = document.querySelectorAll(
-          ".demo-box, .demo-box-outline, .light-button, .light-button-white"
-        );
-        demoElements.forEach((el) => {
-          el.addEventListener("click", (e) => {
-            e.preventDefault();
-            const copyText = el.innerText.trim();
-            if (!copyText) return;
-
-            navigator.clipboard
-              .writeText(copyText)
-              .then(() => {
-                showToast(`已複製: ${copyText}`);
-              })
-              .catch((err) => {
-                console.error("複製失敗:", err);
-              });
+      // ── Chip Copy Buttons ─────────────────────
+      document.querySelectorAll(".demo-card-chip[data-copy]").forEach((chip) => {
+        chip.addEventListener("click", (e) => {
+          e.preventDefault();
+          const text = chip.dataset.copy;
+          navigator.clipboard.writeText(text).then(() => {
+            chip.classList.add("copied");
+            showSnackbar(`已複製：${text}`);
+            setTimeout(() => chip.classList.remove("copied"), 1800);
+          }).catch(() => {
+            showSnackbar("複製失敗，請手動複製");
           });
         });
       });
+
+      // ── Demo Stage Click Copy (Chinese Name) ──
+      document.querySelectorAll(".demo-stage .demo-box, .demo-stage .demo-box-outline, .demo-stage .light-button, .demo-stage .light-button-white").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (el.tagName === "A") {
+            e.preventDefault();
+          }
+          const text = el.innerText.trim();
+          if (!text) return;
+          navigator.clipboard.writeText(text).then(() => {
+            showSnackbar(`已複製：${text}`);
+          }).catch(() => {
+            showSnackbar("複製失敗，請手動複製");
+          });
+        });
+      });
+
+
+      // ── Navigation Drawer Toggle (mobile) ─────
+      const menuBtn = document.getElementById("menuToggleBtn");
+      const navDrawer = document.getElementById("navDrawer");
+      const navOverlay = document.getElementById("navOverlay");
+
+      function openDrawer() {
+        navDrawer.classList.add("open");
+        navOverlay.classList.add("visible");
+        menuBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeDrawer() {
+        navDrawer.classList.remove("open");
+        navOverlay.classList.remove("visible");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      menuBtn.addEventListener("click", () => {
+        navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
+      });
+
+      navOverlay.addEventListener("click", closeDrawer);
+
+      // Close drawer on nav item click (mobile)
+      navDrawer.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          if (window.innerWidth <= 900) closeDrawer();
+        });
+      });
+
+      // ── Active Nav Highlight on Scroll ────────
+      const sections = document.querySelectorAll("section[id], .section-category-header + .demo-card");
+      const navItems = document.querySelectorAll(".nav-item[data-section]");
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navItems.forEach((item) => item.classList.remove("active"));
+            const active = document.querySelector(`.nav-item[data-section="${entry.target.id}"]`);
+            if (active) active.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section[id]").forEach((sec) => observer.observe(sec));
     </script>
+
+    <!-- Confetti / click effects -->
     <script src="./js/all.js"></script>
   </body>
 </html>
