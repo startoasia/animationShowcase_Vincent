@@ -132,6 +132,9 @@
           <a href="#section-confetti" class="nav-item" data-section="section-confetti">
             <span class="nav-item-icon">🎉</span>點擊灑花
           </a>
+          <a href="#section-clickflip" class="nav-item" data-section="section-clickflip">
+            <span class="nav-item-icon">🔁</span>點擊翻面
+          </a>
         </nav>
 
         <!-- ======== MAIN CONTENT ======== -->
@@ -584,9 +587,14 @@
           <section id="section-flipin" class="demo-card">
             <div class="demo-card-header">
               <h2 class="demo-card-title">🔁 翻入系列</h2>
-              <button class="demo-card-chip" data-copy="data-aos=&quot;flip-right&quot;" id="chip-flipin">
-                📋 flip-right
-              </button>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy="data-aos=&quot;flip-right&quot;" id="chip-flipin">
+                  📋 flip-right
+                </button>
+                <button class="demo-card-chip" data-copy="data-aos=&quot;flip-left-out&quot;" id="chip-flip-left-out">
+                  📋 flip-left-out
+                </button>
+              </div>
             </div>
             <p class="demo-card-desc">支援四個方向，滾動出現後觸發。</p>
             <div class="demo-card-body">
@@ -596,6 +604,13 @@
                 <div class="demo-box" data-aos="flip-up" data-aos-delay="150" style="background-color: #6680a8">向上翻入</div>
                 <div class="demo-box" data-aos="flip-left" data-aos-delay="150" style="background-color: #6773b4">向左翻入</div>
               </div>
+              <div class="demo-stage" style="margin-top: 12px;">
+                <!-- 雙面翻卡 -->
+                <div class="flip-card-wrapper">
+                  <div class="demo-box" data-aos="flip-left-out" data-aos-delay="150" style="background-color: #ff6a80;">正面</div>
+                  <div class="demo-box" data-aos="flip-right" data-aos-delay="150" style="background-color: #3f51b5;">背面</div>
+                </div>
+              </div>`1
             </div>
           </section>
 
@@ -620,6 +635,31 @@
                   <a href="#" id="confettiBtn" class="light-button">🎊 點擊灑花</a>
                   <a href="#" id="confettiViewportBtn" class="light-button" style="background-color: #9c27b0">🌟 全螢幕灑花</a>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 點擊翻面 -->
+          <section id="section-clickflip" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔁 點擊翻面</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".click-flip-card" id="chip-click-flip-card">
+                  📋 .click-flip-card
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">點擊卡片可進行翻面</p>
+            <div class="demo-card-body">
+              <div class="demo-stage">
+                <!-- 點擊翻面卡片 -->
+                <label class="click-flip-card">
+                  <input type="checkbox" style="display: none;">
+                  <div class="click-flip-inner">
+                    <div class="demo-box click-flip-front" style="background-color: #ff6a80;">正面</div>
+                    <div class="demo-box click-flip-back" style="background-color: #3f51b5;">背面</div>
+                  </div>
+                </label>
               </div>
             </div>
           </section>
@@ -753,5 +793,7 @@
 
     <!-- Confetti / click effects -->
     <script src="./js/all.js"></script>
+    <!-- Custom animations interactive controllers -->
+    <script src="./js/myani.js"></script>
   </body>
 </html>
