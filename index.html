@@ -66,7 +66,7 @@
             <span class="nav-item-icon">✨</span>掃光
           </a>
           <a href="#section-bounce" class="nav-item" data-section="section-bounce">
-            <span class="nav-item-icon">🏀</span>彈跳
+            <span class="nav-item-icon">🏀</span>Q彈
           </a>
           <a href="#section-scale" class="nav-item" data-section="section-scale">
             <span class="nav-item-icon">🔍</span>縮放
@@ -110,9 +110,7 @@
           <a href="#section-darken" class="nav-item" data-section="section-darken">
             <span class="nav-item-icon">🌓</span>明暗切換
           </a>
-          <a href="#section-rubber" class="nav-item" data-section="section-rubber">
-            <span class="nav-item-icon">🧃</span>橡皮筋／果凍
-          </a>
+
 
           <!-- 滑動觸發 -->
           <div class="nav-group-label">滑動觸發</div>
@@ -195,17 +193,28 @@
             </div>
           </section>
 
-          <!-- 彈跳 -->
+          <!-- Q彈 -->
           <section id="section-bounce" class="demo-card">
             <div class="demo-card-header">
-              <h2 class="demo-card-title">🏀 彈跳</h2>
-              <button class="demo-card-chip" data-copy=".ani-bounce" id="chip-bounce">
-                📋 .ani-bounce
-              </button>
+              <h2 class="demo-card-title">🏀 Q彈</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy=".ani-bounce" id="chip-bounce">
+                  📋 .ani-bounce
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-rubberband" id="chip-rubber">
+                  📋 .ani-rubberband
+                </button>
+                <button class="demo-card-chip" data-copy=".ani-jelly" id="chip-jelly">
+                  📋 .ani-jelly
+                </button>
+              </div>
             </div>
+            <p class="demo-card-desc">包含彈跳、橡皮筋與果凍效果，可與點擊/滑過等互動特效搭配。</p>
             <div class="demo-card-body">
               <div class="demo-stage">
                 <div class="demo-box ani-bounce">彈跳</div>
+                <div class="demo-box ani-rubberband" style="background-color: #e91e63">橡皮筋</div>
+                <div class="demo-box ani-jelly" style="background-color: #ff5722">果凍</div>
               </div>
             </div>
           </section>
@@ -485,27 +494,6 @@
             </div>
           </section>
 
-          <!-- 橡皮筋與果凍 -->
-          <section id="section-rubber" class="demo-card">
-            <div class="demo-card-header">
-              <h2 class="demo-card-title">🧃 橡皮筋 ／ 果凍</h2>
-              <div class="demo-card-chips">
-                <button class="demo-card-chip" data-copy=".ani-rubberband" id="chip-rubber">
-                  📋 .ani-rubberband
-                </button>
-                <button class="demo-card-chip" data-copy=".ani-jelly" id="chip-jelly">
-                  📋 .ani-jelly
-                </button>
-              </div>
-            </div>
-            <p class="demo-card-desc">可以與點擊等互動效果搭配使用</p>
-            <div class="demo-card-body">
-              <div class="demo-stage">
-                <div class="demo-box ani-rubberband" style="background-color: #e91e63">橡皮筋</div>
-                <div class="demo-box ani-jelly" style="background-color: #ff5722">果凍</div>
-              </div>
-            </div>
-          </section>
 
           <!-- ─────────────────────────────────────
                滑動觸發 分類標題
@@ -524,7 +512,7 @@
                 📋 fade-in
               </button>
             </div>
-            <p class="demo-card-desc">支援八個方向，用 data-aos 屬性指定。向下滾動後觸發。</p>
+            <p class="demo-card-desc">支援八個方向，滾動出現後觸發。</p>
             <div class="demo-card-body">
               <div class="demo-stage">
                 <div class="demo-box" data-aos="fade-in" data-aos-delay="150" style="background-color: #438eff">淡入</div>
@@ -547,10 +535,11 @@
           <!-- 浮出 -->
           <section id="section-zoomin" class="demo-card">
             <div class="demo-card-header">
-              <h2 class="demo-card-title">🔭 浮出系列（由小而大）</h2>
+              <h2 class="demo-card-title">🔭 浮出系列</h2>
               <button class="demo-card-chip" data-copy="data-aos=&quot;zoom-in&quot;" id="chip-zoomin">
                 📋 zoom-in
               </button>
+              <p class="demo-card-desc">支援四個方向，滾動出現後觸發。視覺上由小而大，浮上表面</p>
             </div>
             <div class="demo-card-body">
               <div class="demo-stage">
@@ -568,10 +557,11 @@
           <!-- 置入 -->
           <section id="section-zoomout" class="demo-card">
             <div class="demo-card-header">
-              <h2 class="demo-card-title">📦 置入系列（由大而小）</h2>
+              <h2 class="demo-card-title">📦 置入系列</h2>
               <button class="demo-card-chip" data-copy="data-aos=&quot;zoom-out&quot;" id="chip-zoomout">
                 📋 zoom-out
               </button>
+              <p class="demo-card-desc">支援四個方向，滾動出現後觸發。視覺上由大而小，壓上表面</p>
             </div>
             <div class="demo-card-body">
               <div class="demo-stage">
@@ -593,6 +583,7 @@
               <button class="demo-card-chip" data-copy="data-aos=&quot;flip-right&quot;" id="chip-flipin">
                 📋 flip-right
               </button>
+              <p class="demo-card-desc">支援四個方向，滾動出現後觸發。</p>
             </div>
             <div class="demo-card-body">
               <div class="demo-stage">
