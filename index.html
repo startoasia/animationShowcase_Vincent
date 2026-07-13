@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/myani.css" />
     <link rel="stylesheet" href="css/clickani.css" />
+    <link rel="stylesheet" href="css/scrollani.css" />
   </head>
 
   <body>
@@ -125,6 +126,9 @@
           </a>
           <a href="#section-flipin" class="nav-item" data-section="section-flipin">
             <span class="nav-item-icon">🔁</span>翻入系列
+          </a>
+          <a href="#section-scroll-confetti" class="nav-item" data-section="section-scroll-confetti">
+            <span class="nav-item-icon">🎆</span>滑動灑花
           </a>
 
           <!-- 點擊互動 -->
@@ -607,10 +611,42 @@
               <div class="demo-stage" style="margin-top: 12px;">
                 <!-- 雙面翻卡 -->
                 <div class="flip-card-wrapper">
-                  <div class="demo-box" data-aos="flip-left-out" data-aos-delay="150" style="background-color: #ff6a80;">正面</div>
+                  <div class="demo-box" data-aos="flip-left-out" data-aos-delay="150" style="background-color: #ff6a80;" data-aos-mirror="true">正面</div>
                   <div class="demo-box" data-aos="flip-right" data-aos-delay="150" style="background-color: #3f51b5;">背面</div>
                 </div>
-              </div>`1
+              </div>
+            </div>
+          </section>
+
+          <!-- 滑動灑花 -->
+          <section id="section-scroll-confetti" class="demo-card"
+                   data-scroll-confetti
+                   data-confetti-threshold="0.3"
+                   data-confetti-duration="5800">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🎆 滑動灑花</h2>
+              <button class="demo-card-chip" data-copy=".confetti-scroll" id="chip-scroll-confetti">
+                📋 .confetti-scroll
+              </button>
+            </div>
+            <p class="demo-card-desc">
+              滾動到此區塊時自動觸發全螢幕灑花。只需在容器加上
+              <code>data-scroll-confetti</code>，觸發點加上 <code>data-confetti-trigger</code>，
+              呼叫 <code>ScrollConfetti.autoInit()</code> 即可——每次滾過去都會再次播放。
+            </p>
+            <div class="demo-card-body">
+              <div class="demo-stage" style="flex-direction: column; gap: 16px; align-items: center;">
+                <div id="scroll-confetti-target" class="scroll-confetti-badge"
+                     data-confetti-trigger>
+                  <span class="badge-emoji">🎆</span>
+                  <span>滾動到這裡就會觸發灑花！</span>
+                </div>
+                <div class="scroll-confetti-status" id="scroll-confetti-status"
+                     data-confetti-status
+                     style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); min-height: 1.4em; text-align: center;">
+                  等待滾動觸發…
+                </div>
+              </div>
             </div>
           </section>
 
@@ -793,6 +829,8 @@
 
     <!-- Confetti / click effects -->
     <script src="./js/all.js"></script>
+    <!-- Scroll-triggered confetti module -->
+    <script src="./js/scrollani.js"></script>
     <!-- Custom animations interactive controllers -->
     <script src="./js/myani.js"></script>
   </body>

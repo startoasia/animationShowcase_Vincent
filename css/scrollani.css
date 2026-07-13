@@ -1,0 +1,141 @@
+/* ============================================================
+   scrollani.css — 滑動觸發灑花 (Scroll-triggered Confetti)
+   使用方式：用 IntersectionObserver 在目標 section 進入
+   視窗時加上 .confetti-scroll class，離開後移除。
+   ============================================================ */
+
+/* ── CSS 顏色變數（獨立定義，與 clickani.css 脫鉤） ── */
+.confetti-scroll {
+  --paper_color1: #ff69b4; /* 桃紅色 (Hot Pink) */
+  --paper_color2: #ffa500; /* 亮橘色 (Orange) */
+  --paper_color3: #ffd700; /* 金黃色 (Gold) */
+  --paper_color4: #32cd32; /* 萊姆綠 (Lime Green) */
+  --paper_color5: #1e90ff; /* 寶石藍 (Dodger Blue) */
+  --paper_color6: #9370db; /* 蘭花紫 (Medium Purple) */
+}
+
+/* ── 彩帶圖案（::before 與 ::after 共用） ── */
+.confetti-scroll::before,
+.confetti-scroll::after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(var(--paper_color1) 50%, transparent 20%),
+    linear-gradient(var(--paper_color2) 50%, transparent 20%),
+    linear-gradient(var(--paper_color3) 25%, transparent 20%),
+    linear-gradient(var(--paper_color4) 40%, transparent 20%),
+    linear-gradient(var(--paper_color5) 70%, transparent 20%),
+    linear-gradient(var(--paper_color6) 60%, transparent 20%),
+    linear-gradient(var(--paper_color1) 40%, transparent 20%),
+    linear-gradient(var(--paper_color2) 50%, transparent 20%),
+    linear-gradient(var(--paper_color3) 15%, transparent 20%),
+    linear-gradient(var(--paper_color4) 40%, transparent 20%),
+    linear-gradient(var(--paper_color5) 70%, transparent 20%),
+    linear-gradient(var(--paper_color6) 60%, transparent 20%),
+    linear-gradient(var(--paper_color1) 45%, transparent 20%),
+    linear-gradient(var(--paper_color2) 75%, transparent 20%),
+    linear-gradient(var(--paper_color3) 55%, transparent 20%),
+    linear-gradient(var(--paper_color4) 60%, transparent 20%),
+    linear-gradient(var(--paper_color5) 30%, transparent 20%),
+    linear-gradient(var(--paper_color6) 80%, transparent 20%),
+    linear-gradient(var(--paper_color1) 50%, transparent 20%),
+    linear-gradient(var(--paper_color2) 40%, transparent 20%),
+    linear-gradient(var(--paper_color3) 60%, transparent 20%),
+    linear-gradient(var(--paper_color4) 30%, transparent 20%),
+    linear-gradient(var(--paper_color5) 50%, transparent 20%),
+    linear-gradient(var(--paper_color6) 70%, transparent 20%),
+    linear-gradient(var(--paper_color1) 20%, transparent 20%),
+    linear-gradient(var(--paper_color2) 60%, transparent 20%),
+    linear-gradient(var(--paper_color3) 40%, transparent 20%),
+    linear-gradient(var(--paper_color4) 50%, transparent 20%),
+    linear-gradient(var(--paper_color5) 80%, transparent 20%);
+  background-size:
+    8px 8px, 5px 7px, 5px 6px, 7px 8px, 8px 6px, 8px 8px, 5px 9px, 7px 6px,
+    8px 8px, 5px 7px, 5px 9px, 6px 9px, 4px 6px, 5px 7px, 8px 5px, 6px 8px,
+    7px 5px, 5px 9px, 8px 6px, 6px 6px, 7px 8px, 5px 5px, 8px 8px, 6px 7px,
+    5px 8px, 7px 6px, 8px 5px, 6px 9px, 5px 6px;
+}
+
+/* ── 動畫方向（::before 正向，::after 鏡像） ── */
+.confetti-scroll::before {
+  animation: scroll-confetti ease-out 5s forwards;
+}
+
+.confetti-scroll::after {
+  animation: scroll-confetti ease-out 5s 0.8s forwards;
+  transform: scaleX(-1); /* 左右鏡像，讓位置與第一層錯開 */
+}
+
+/* ── 專屬 keyframes（不依賴 clickani.css） ── */
+@keyframes scroll-confetti {
+  0% {
+    background-position:
+      10% -10%, 18% 10%, 25% -10%, 34% -10%, 40% -10%, 47% -10%,
+      53% 0%, 60% 20%, 67% 0%, 73% 0%, 79% 0%, 85% 0%, 92% 10%,
+      92% 10%, 99% 0%, 5% -10%, 12% -5%, 20% -10%, 28% 0%, 36% -5%,
+      44% -10%, 52% 0%, 58% -5%, 66% -10%, 74% 0%, 82% -5%,
+      88% -10%, 94% 0%, 98% -5%;
+  }
+  50% {
+    background-position:
+      0% 80%, 8% 80%, 16% 60%, 32% 100%, 40% 70%, 48% 60%,
+      54% 60%, 62% 80%, 70% 80%, 78% 60%, 84% 100%, 90% 70%,
+      95% 60%, 100% 80%, 88% 80%, 10% 60%, 20% 90%, 30% 70%,
+      40% 100%, 50% 75%, 60% 65%, 70% 90%, 80% 70%, 90% 85%,
+      15% 80%, 25% 60%, 35% 90%, 45% 70%, 55% 80%;
+  }
+  100% {
+    background-position:
+      0% 90%, 10% 90%, 18% 70%, 25% 110%, 37% 80%, 45% 70%,
+      57% 110%, 63% 90%, 72% 90%, 80% 70%, 88% 110%, 92% 80%,
+      96% 70%, 100% 90%, 84% 90%, 5% 110%, 15% 95%, 25% 105%,
+      35% 85%, 45% 110%, 55% 90%, 65% 100%, 75% 85%, 85% 110%,
+      95% 95%, 10% 100%, 30% 90%, 50% 105%, 70% 95%;
+    background-size:
+      0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%,
+      0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%,
+      0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%,
+      0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+/* ── Demo 展示徽章 ── */
+.scroll-confetti-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #9c27b0 0%, #3f51b5 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 20px rgba(156, 39, 176, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.scroll-confetti-badge .badge-emoji {
+  font-size: 1.5rem;
+  animation: scroll-badge-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-badge-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* 觸發後短暫高亮邊框 */
+.confetti-scroll-active {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+}

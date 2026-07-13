@@ -1,6 +1,12 @@
+/* ============================================================
+   clickani.css — 點擊觸發灑花 (Click-triggered Confetti)
+   .confetti        → 點擊元素本身噴出（局部）
+   .confetti-fullscreen → 覆蓋全視窗噴出（全螢幕）
+   ============================================================ */
+
+/* ── CSS 顏色變數 ── */
 .confetti,
 .confetti-fullscreen {
-  --animation_speed: 40s;
   --paper_color1: #ff69b4; /* 桃紅色 (Hot Pink) */
   --paper_color2: #ffa500; /* 亮橘色 (Orange) */
   --paper_color3: #ffd700; /* 金黃色 (Gold) */
@@ -13,6 +19,7 @@
   position: relative;
 }
 
+/* ── 彩帶圖案（::before 與 ::after 共用） ── */
 .confetti::before,
 .confetti-fullscreen::before,
 .confetti-fullscreen::after {
@@ -38,6 +45,7 @@
     5px 8px, 7px 6px, 8px 5px, 6px 9px, 5px 6px;
 }
 
+/* ── 局部點擊版（掛在按鈕元素上） ── */
 .confetti::before {
   position: absolute;
   top: -50px;
@@ -50,6 +58,7 @@
   animation: confetti ease-out 2s forwards;
 }
 
+/* ── 全螢幕版（掛在 body 上） ── */
 .confetti-fullscreen::before {
   position: fixed;
   top: 0;
