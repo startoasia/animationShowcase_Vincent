@@ -1,0 +1,180 @@
+/* ============================================================
+   ANIME.JS SHOWCASE STYLES
+   模組化隨插即用元件展示專用樣式
+   ============================================================ */
+
+/* ── 通用展示展台互動手勢 ── */
+.anime-interactive-stage {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.anime-interactive-stage:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   A. SVG 路徑跟隨元件 (createMotionPath)
+   ============================================================ */
+.anime-motion-stage {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #0b1120 0%, #1e1b4b 60%, #0f172a 100%);
+  border-radius: var(--md-shape-md);
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.anime-motion-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.anime-motion-track-bg {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 6;
+  fill: none;
+}
+
+.anime-motion-track {
+  stroke: url(#motionPathGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 6 6;
+  fill: none;
+}
+
+.anime-traveler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  margin-left: -17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.8));
+}
+
+.anime-traveler-rocket {
+  font-size: 24px;
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   B. 文字分詞遮罩浮現元件 (splitText: words)
+   ============================================================ */
+.anime-splitwords-stage {
+  background: #ffffff;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-md);
+  padding: 36px 32px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.anime-splitwords-text {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  line-height: 1.35;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.anime-split-word-clip {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 2px;
+  margin-right: 0.28em;
+}
+
+.anime-split-word-inner {
+  display: inline-block;
+  transform-origin: bottom left;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   C. 字元波浪彈跳元件 (splitText: chars - wave)
+   ============================================================ */
+.anime-chars-wave-stage {
+  background: radial-gradient(circle at top left, #1e1b4b 0%, #0f172a 100%);
+  border-radius: var(--md-shape-md);
+  padding: 40px 30px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  perspective: 800px;
+}
+
+.anime-chars-wave-text {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.anime-char-wave {
+  display: inline-block;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(129, 140, 248, 0.4);
+}
+
+/* ============================================================
+   D. 字元 3D 翻轉進場元件 (splitText: chars - flip)
+   ============================================================ */
+.anime-chars-flip-stage {
+  background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+  border-radius: var(--md-shape-md);
+  padding: 40px 30px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+.anime-chars-flip-text {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  margin: 0;
+  line-height: 1.2;
+  color: #38bdf8;
+  text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+}
+
+.anime-char-flip {
+  display: inline-block;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}

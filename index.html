@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/myani.css" />
     <link rel="stylesheet" href="css/clickani.css" />
     <link rel="stylesheet" href="css/scrollani.css" />
+    <link rel="stylesheet" href="css/anime-showcase.css" />
   </head>
 
   <body>
@@ -138,6 +139,21 @@
           </a>
           <a href="#section-clickflip" class="nav-item" data-section="section-clickflip">
             <span class="nav-item-icon">🔁</span>點擊翻面
+          </a>
+
+          <!-- Anime.js 動畫庫 -->
+          <div class="nav-group-label">Anime.js 動畫庫</div>
+          <a href="#section-anime-motionpath" class="nav-item" data-section="section-anime-motionpath">
+            <span class="nav-item-icon">🚀</span>路徑跟隨
+          </a>
+          <a href="#section-anime-splitwords" class="nav-item" data-section="section-anime-splitwords">
+            <span class="nav-item-icon">🔤</span>分詞遮罩
+          </a>
+          <a href="#section-anime-chars-wave" class="nav-item" data-section="section-anime-chars-wave">
+            <span class="nav-item-icon">🌊</span>波浪彈跳
+          </a>
+          <a href="#section-anime-chars-flip" class="nav-item" data-section="section-anime-chars-flip">
+            <span class="nav-item-icon">🌀</span>3D 翻轉
           </a>
         </nav>
 
@@ -698,6 +714,76 @@
             </div>
           </section>
 
+          <!-- ─────────────────────────────────────
+               Anime.js 動畫庫 分類標題
+          ───────────────────────────────────── -->
+          <div class="section-category-header">
+            <div class="section-category-dot" style="background: #6366f1"></div>
+            <h1 class="section-category-title">Anime.js 動畫庫</h1>
+            <span class="section-category-desc">隨插即用模組化動態元件</span>
+          </div>
+
+          <!-- 1. SVG: createMotionPath -->
+          <section id="section-anime-motionpath" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🚀 路徑跟隨</h2>
+            </div>
+            <div class="demo-card-body">
+              <div class="anime-motion-stage anime-interactive-stage" data-anime-motion-path title="點擊暫停／繼續">
+                <svg class="anime-motion-svg" viewBox="0 0 800 220" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="motionPathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#38bdf8" />
+                      <stop offset="50%" stop-color="#818cf8" />
+                      <stop offset="100%" stop-color="#f472b6" />
+                    </linearGradient>
+                  </defs>
+                  <path class="anime-motion-track-bg" d="M 50 160 C 180 30, 280 200, 420 100 C 540 10, 640 190, 750 60"></path>
+                  <path class="anime-motion-track" data-motion-track d="M 50 160 C 180 30, 280 200, 420 100 C 540 10, 640 190, 750 60"></path>
+                </svg>
+                <div class="anime-traveler" data-motion-traveler>
+                  <div class="anime-traveler-rocket">🚀</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. TEXT: splitText: words -->
+          <section id="section-anime-splitwords" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🔤 分詞遮罩</h2>
+            </div>
+            <div class="demo-card-body">
+              <div class="anime-splitwords-stage anime-interactive-stage" data-anime-split-words title="點擊重新觸發進場">
+                <div class="anime-splitwords-text" data-split-target>探索極致動態美學，排版層次遮罩浮現</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. TEXT: splitText: chars - wave -->
+          <section id="section-anime-chars-wave" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🌊 波浪彈跳</h2>
+            </div>
+            <div class="demo-card-body">
+              <div class="anime-chars-wave-stage anime-interactive-stage" data-anime-split-chars="wave" title="點擊重新彈跳">
+                <div class="anime-chars-wave-text" data-split-target>DESIGN DYNAMICS</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. TEXT: splitText: chars - flip -->
+          <section id="section-anime-chars-flip" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🌀 3D 翻轉</h2>
+            </div>
+            <div class="demo-card-body">
+              <div class="anime-chars-flip-stage anime-interactive-stage" data-anime-split-chars="flip" title="點擊重新翻轉">
+                <div class="anime-chars-flip-text" data-split-target>CREATIVE FLOW</div>
+              </div>
+            </div>
+          </section>
+
         </main>
       </div><!-- /app-body -->
     </div><!-- /app-shell -->
@@ -831,5 +917,9 @@
     <script src="./js/scrollani.js"></script>
     <!-- Custom animations interactive controllers -->
     <script src="./js/myani.js"></script>
+    <!-- Anime.js v4.5.0 -->
+    <script src="./js/anime.min.js"></script>
+    <!-- Anime.js Modular Showcase Components -->
+    <script src="./js/anime-showcase.js"></script>
   </body>
 </html>
