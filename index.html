@@ -25,9 +25,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/myani.css" />
-    <link rel="stylesheet" href="css/clickani.css" />
-    <link rel="stylesheet" href="css/scrollani.css" />
     <link rel="stylesheet" href="css/anime-showcase.css" />
+    <link rel="stylesheet" href="css/particles-showcase.css" />
   </head>
 
   <body>
@@ -128,17 +127,26 @@
           <a href="#section-flipin" class="nav-item" data-section="section-flipin">
             <span class="nav-item-icon">🔁</span>翻入系列
           </a>
-          <a href="#section-scroll-confetti" class="nav-item" data-section="section-scroll-confetti">
-            <span class="nav-item-icon">🎆</span>滑動灑花
-          </a>
 
           <!-- 點擊互動 -->
           <div class="nav-group-label">點擊互動</div>
-          <a href="#section-confetti" class="nav-item" data-section="section-confetti">
-            <span class="nav-item-icon">🎉</span>點擊灑花
-          </a>
           <a href="#section-clickflip" class="nav-item" data-section="section-clickflip">
             <span class="nav-item-icon">🔁</span>點擊翻面
+          </a>
+
+          <!-- 粒子動畫 (tsParticles) -->
+          <div class="nav-group-label">粒子動畫</div>
+          <a href="#section-particles-snow" class="nav-item" data-section="section-particles-snow">
+            <span class="nav-item-icon">❄️</span>雪花飄落
+          </a>
+          <a href="#section-particles-confetti" class="nav-item" data-section="section-particles-confetti">
+            <span class="nav-item-icon">🎊</span>彩帶降落
+          </a>
+          <a href="#section-particles-cannon" class="nav-item" data-section="section-particles-cannon">
+            <span class="nav-item-icon">🎉</span>雙側禮炮
+          </a>
+          <a href="#section-particles-fireworks" class="nav-item" data-section="section-particles-fireworks">
+            <span class="nav-item-icon">🎆</span>煙火綻放
           </a>
 
           <!-- Anime.js 動畫庫 -->
@@ -634,36 +642,6 @@
             </div>
           </section>
 
-          <!-- 滑動灑花 -->
-          <section id="section-scroll-confetti" class="demo-card"
-                   data-scroll-confetti
-                   data-confetti-threshold="0.3"
-                   data-confetti-duration="5800">
-            <div class="demo-card-header">
-              <h2 class="demo-card-title">🎆 滑動灑花</h2>
-              <button class="demo-card-chip" data-copy=".confetti-scroll" id="chip-scroll-confetti">
-                📋 .confetti-scroll
-              </button>
-            </div>
-            <p class="demo-card-desc">
-              滾動到此區塊時自動觸發全螢幕灑花，自動重置。
-            </p>
-            <div class="demo-card-body">
-              <div class="demo-stage" style="flex-direction: column; gap: 16px; align-items: center;">
-                <div id="scroll-confetti-target" class="scroll-confetti-badge"
-                     data-confetti-trigger>
-                  <span class="badge-emoji">🎆</span>
-                  <span>滾動到這裡就會觸發灑花！</span>
-                </div>
-                <div class="scroll-confetti-status" id="scroll-confetti-status"
-                     data-confetti-status
-                     style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); min-height: 1.4em; text-align: center;">
-                  等待滾動觸發…
-                </div>
-              </div>
-            </div>
-          </section>
-
           <!-- ─────────────────────────────────────
                點擊互動 分類標題
           ───────────────────────────────────── -->
@@ -672,22 +650,6 @@
             <h1 class="section-category-title">點擊互動特效</h1>
             <span class="section-category-desc">點擊元素以查看效果</span>
           </div>
-
-          <!-- 點擊灑花 -->
-          <section id="section-confetti" class="demo-card">
-            <div class="demo-card-header">
-              <h2 class="demo-card-title">🎉 點擊灑花</h2>
-            </div>
-            <p class="demo-card-desc">撒出的色塊顏色可調；全螢幕版會覆蓋整個瀏覽器視窗。</p>
-            <div class="demo-card-body">
-              <div class="demo-stage">
-                <div class="click-btn-group">
-                  <a href="#" id="confettiBtn" class="light-button">🎊 點擊灑花</a>
-                  <a href="#" id="confettiViewportBtn" class="light-button" style="background-color: #9c27b0">🌟 全螢幕灑花</a>
-                </div>
-              </div>
-            </div>
-          </section>
 
           <!-- 點擊翻面 -->
           <section id="section-clickflip" class="demo-card">
@@ -710,6 +672,150 @@
                     <div class="demo-box click-flip-back" style="background-color: #3f51b5;">背面</div>
                   </div>
                 </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- ─────────────────────────────────────
+               粒子動畫 (tsParticles) 分類標題
+          ───────────────────────────────────── -->
+          <div class="section-category-header">
+            <div class="section-category-dot" style="background: #0ea5e9"></div>
+            <h1 class="section-category-title">粒子動畫 (tsParticles)</h1>
+            <span class="section-category-desc">由 js/config.js 控制，支援局部舞台與全螢幕切換</span>
+          </div>
+
+          <!-- 1. Snow 雪花飄落 -->
+          <section id="section-particles-snow" class="demo-card" data-particle-stage-id="demo-snow">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">❄️ 雪花飄落 (Snow)</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy="preset: &quot;snow&quot;" id="chip-particle-snow">
+                  📋 preset: &quot;snow&quot;
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">持續型雪花飄落（支援數量、速度、顏色與圖片替換），滑動至可視範圍自動播放，離開自動暫停。</p>
+            <div class="demo-card-body">
+              <div id="particle-stage-snow" class="particle-stage particle-stage--snow">
+                <div class="particle-stage-overlay">
+                  <div>
+                    <div class="particle-stage-caption">冬季夜景局部舞台（container: "#particle-stage-snow"）</div>
+                    <div class="particle-stage-sub">支援 wobble 搖擺與行動端粒子數量自適應</div>
+                  </div>
+                  <div class="particle-status-pill" data-particle-status-pill>
+                    <span class="particle-status-dot"></span>
+                    <span data-status-text>待機中</span>
+                  </div>
+                </div>
+              </div>
+              <div class="particle-controls">
+                <button type="button" class="particle-btn particle-btn--tonal" data-particle-toggle>⏸ 暫停預覽</button>
+                <button type="button" class="particle-btn particle-btn--outline" data-global-particle="global-snow">🌐 全螢幕飄雪</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. Confetti 彩帶降落 -->
+          <section id="section-particles-confetti" class="demo-card" data-particle-stage-id="demo-confetti-continuous">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🎊 彩帶降落 (Confetti)</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy="preset: &quot;confetti&quot;" id="chip-particle-confetti">
+                  📋 preset: &quot;confetti&quot;
+                </button>
+                <button class="demo-card-chip" data-copy="LPParticles.fire(&quot;confetti&quot;)" id="chip-particle-confetti-burst">
+                  📋 mode: &quot;burst&quot; (scroll / click)
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">整合持續 3D 翻轉飄落與單次頂端彩帶雨（mode: "burst" 可於 config.js 搭配 scroll 滑動觸發或 click 觸發）。</p>
+            <div class="demo-card-body">
+              <div id="particle-stage-confetti" class="particle-stage particle-stage--confetti">
+                <div class="particle-stage-overlay">
+                  <div>
+                    <div class="particle-stage-caption">持續彩帶飄落舞台（mode: "continuous"）</div>
+                    <div class="particle-stage-sub">具 rotate / tilt / roll 3D 翻滾與色彩配置</div>
+                  </div>
+                  <div class="particle-status-pill" data-particle-status-pill>
+                    <span class="particle-status-dot"></span>
+                    <span data-status-text>待機中</span>
+                  </div>
+                </div>
+              </div>
+              <div class="particle-controls">
+                <button type="button" class="particle-btn particle-btn--tonal" data-particle-toggle>⏸ 暫停預覽</button>
+                <button type="button" id="btn-confetti-burst" class="particle-btn particle-btn--primary">🎊 觸發單次彩帶雨 (Burst)</button>
+                <button type="button" class="particle-btn particle-btn--outline" data-global-particle="global-confetti-continuous">🌐 全螢幕持續彩帶</button>
+                <button type="button" id="btn-confetti-scroll-toggle" class="particle-btn particle-btn--outline">🎆 開啟滑動灑花示範</button>
+              </div>
+              <div id="confetti-scroll-panel" class="particle-scroll-panel" hidden>
+                <div id="confetti-scroll-zone" class="particle-scroll-zone">
+                  <span class="particle-scroll-emoji">🎆</span>
+                  <div class="particle-scroll-text">
+                    <strong>滑動觸發全畫面灑花已啟用！</strong>
+                    <span id="confetti-scroll-status">上下滑動頁面讓此區塊進出視窗，即會觸發全畫面彩帶雨。</span>
+                  </div>
+                </div>
+                <div class="particle-scroll-hint">
+                  對應 <code>js/config.js</code> 設定：<code>preset: "confetti", mode: "burst", trigger: { type: "scroll", selector: "#confetti-scroll-zone", once: false }</code>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Confetti Cannon 雙側禮炮 -->
+          <section id="section-particles-cannon" class="demo-card">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🎉 雙側禮炮 (Confetti Cannon)</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy="LPParticles.fire(&quot;confettiCannon&quot;)" id="chip-particle-cannon">
+                  📋 preset: &quot;confettiCannon&quot;
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">左下 45° + 右下 135° 向中央噴射禮炮，支援替換噴射物的圖片（如金幣）。</p>
+            <div class="demo-card-body">
+              <div class="particle-stage particle-stage--cannon">
+                <div class="particle-stage-overlay">
+                  <div class="particle-stage-caption">雙側 45° / 135° 對角齊發</div>
+                  <div class="particle-stage-sub">點擊下方按鈕從視窗左下與右下雙側噴出彩帶或金幣</div>
+                </div>
+              </div>
+              <div class="particle-controls">
+                <button type="button" id="btn-cannon-classic" class="particle-btn particle-btn--accent">🎉 經典彩帶禮炮</button>
+                <button type="button" id="btn-cannon-coin" class="particle-btn particle-btn--warm">🪙 金幣圖片禮炮 (imageSrc)</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Fireworks 煙火綻放 -->
+          <section id="section-particles-fireworks" class="demo-card" data-particle-stage-id="demo-fireworks">
+            <div class="demo-card-header">
+              <h2 class="demo-card-title">🎆 煙火 (Fireworks)</h2>
+              <div class="demo-card-chips">
+                <button class="demo-card-chip" data-copy="preset: &quot;fireworks&quot;" id="chip-particle-fireworks">
+                  📋 preset: &quot;fireworks&quot;
+                </button>
+              </div>
+            </div>
+            <p class="demo-card-desc">透明背景與發射線軌跡煙火。</p>
+            <div class="demo-card-body">
+              <div id="particle-stage-fireworks" class="particle-stage particle-stage--fireworks">
+                <div class="particle-stage-overlay">
+                  <div>
+                    <div class="particle-stage-caption">深色夜空煙火（背景）</div>
+                    <div class="particle-stage-sub">支援發射頻率 rateDelay、尾跡與火花顏色</div>
+                  </div>
+                  <div class="particle-status-pill" data-particle-status-pill>
+                    <span class="particle-status-dot"></span>
+                    <span data-status-text>待機中</span>
+                  </div>
+                </div>
+              </div>
+              <div class="particle-controls">
+                <button type="button" class="particle-btn particle-btn--tonal" data-particle-toggle>⏸ 暫停預覽</button>
+                <button type="button" class="particle-btn particle-btn--outline" data-global-particle="global-fireworks">🌐 全螢幕煙火</button>
               </div>
             </div>
           </section>
@@ -787,6 +893,12 @@
         </main>
       </div><!-- /app-body -->
     </div><!-- /app-shell -->
+
+    <!-- ======== 全螢幕粒子預覽懸浮關閉列 ======== -->
+    <div class="particle-global-bar" id="particleGlobalBar" role="region" aria-label="全螢幕粒子控制">
+      <span id="particleGlobalBarLabel">全螢幕粒子播放中</span>
+      <button type="button" class="particle-global-bar-close" id="particleGlobalBarClose">關閉全螢幕</button>
+    </div>
 
     <!-- ======== MD3 SNACKBAR ======== -->
     <div class="snackbar" id="snackbar" role="status" aria-live="polite">
@@ -911,12 +1023,10 @@
       document.querySelectorAll("section[id]").forEach((sec) => observer.observe(sec));
     </script>
 
-    <!-- Confetti / click effects -->
-    <script src="./js/all.js"></script>
-    <!-- Scroll-triggered confetti module -->
-    <script src="./js/scrollani.js"></script>
-    <!-- Custom animations interactive controllers -->
-    <script src="./js/myani.js"></script>
+    <!-- Particles config & controller (config.js 須先於 lp-particles.js 載入) -->
+    <script src="./js/config.js"></script>
+    <script src="./js/lp-particles.js"></script>
+    <script src="./js/particles-showcase.js"></script>
     <!-- Anime.js v4.5.0 -->
     <script src="./js/anime.min.js"></script>
     <!-- Anime.js Modular Showcase Components -->

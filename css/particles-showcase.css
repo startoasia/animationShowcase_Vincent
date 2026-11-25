@@ -1,0 +1,319 @@
+/* ============================================================
+   PARTICLES SHOWCASE STYLES
+   tsParticles / LPParticles 展示專區專用樣式
+   ============================================================ */
+
+/* ── 粒子展示舞台（深色主題，確保白雪/彩帶/煙火對比清晰） ── */
+.particle-stage {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: var(--md-shape-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px 20px;
+  color: #f8fafc;
+  box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.particle-stage--snow {
+  background: radial-gradient(circle at 50% 0%, #1e3a5f 0%, #0f172a 70%, #090d16 100%);
+}
+
+.particle-stage--confetti {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 48%, #1e1b4b 100%);
+}
+
+.particle-stage--cannon {
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #2e1065 0%, #17153b 70%, #0f0e24 100%);
+}
+
+.particle-stage--fireworks {
+  height: 320px;
+  background: radial-gradient(circle at 50% 100%, #172554 0%, #090d16 65%, #030712 100%);
+}
+
+/* 舞台覆蓋層資訊（位於 canvas 上層或下層不阻擋點擊） */
+.particle-stage-overlay {
+  position: relative;
+  z-index: 25;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.particle-stage--cannon .particle-stage-overlay {
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.particle-stage-caption {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(248, 250, 252, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+}
+
+.particle-stage-sub {
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.78);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+}
+
+.particle-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--md-shape-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2e8f0;
+  backdrop-filter: blur(6px);
+}
+
+.particle-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.particle-status-pill.is-playing .particle-status-dot {
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.85);
+}
+
+.particle-status-pill.is-paused .particle-status-dot {
+  background: #fbbf24;
+}
+
+/* ── 控制列與按鈕 ── */
+.particle-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.particle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: var(--md-shape-full);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.16s var(--md-motion-standard),
+              box-shadow 0.16s var(--md-motion-standard),
+              background-color 0.16s var(--md-motion-standard),
+              border-color 0.16s var(--md-motion-standard);
+}
+
+.particle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--md-elevation-1);
+}
+
+.particle-btn:active {
+  transform: translateY(0);
+}
+
+.particle-btn--primary {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+.particle-btn--primary:hover {
+  background-color: #4f5db3;
+}
+
+.particle-btn--accent {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.particle-btn--accent:hover {
+  background-color: #6d28d9;
+}
+
+.particle-btn--warm {
+  background-color: #d97706;
+  color: #ffffff;
+}
+
+.particle-btn--warm:hover {
+  background-color: #b45309;
+}
+
+.particle-btn--tonal {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.particle-btn--tonal:hover {
+  background-color: #dce0f5;
+}
+
+.particle-btn--outline {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+.particle-btn--outline:hover {
+  background-color: var(--md-sys-color-surface-container);
+  border-color: var(--md-sys-color-primary);
+}
+
+.particle-btn.is-active {
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
+  border-color: var(--md-sys-color-secondary);
+}
+
+/* ── 全螢幕粒子進行中的懸浮關閉條 ── */
+.particle-global-bar {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 960;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 10px 18px;
+  border-radius: var(--md-shape-full);
+  background: rgba(15, 23, 42, 0.9);
+  color: #f8fafc;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--md-elevation-3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.particle-global-bar.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.particle-global-bar-close {
+  border: none;
+  border-radius: var(--md-shape-full);
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #ef4444;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.particle-global-bar-close:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 600px) {
+  .particle-stage {
+    height: 230px;
+  }
+
+  .particle-stage--fireworks {
+    height: 270px;
+  }
+
+  .particle-global-bar {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+    justify-content: space-between;
+  }
+}
+
+/* ── 彩帶降落區塊內整合「滑動觸發全畫面灑花」示範面板 ── */
+.particle-scroll-panel[hidden] {
+  display: none;
+}
+
+.particle-scroll-panel {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--md-shape-md);
+  background: var(--md-sys-color-surface-container);
+  border: 1px dashed var(--md-sys-color-outline-variant);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.particle-scroll-zone {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--md-shape-md);
+  background: linear-gradient(135deg, #6366f1 0%, #9333ea 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.particle-scroll-zone.is-triggered {
+  transform: scale(1.015);
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.85), 0 8px 24px rgba(147, 51, 234, 0.4);
+}
+
+.particle-scroll-emoji {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.particle-scroll-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.particle-scroll-text span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.particle-scroll-hint {
+  font-size: 0.76rem;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.5;
+}
+
+.particle-scroll-hint code {
+  font-family: "Roboto Mono", "Courier New", monospace;
+  background: var(--md-sys-color-surface-container-highest);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--md-sys-color-on-surface);
+}
